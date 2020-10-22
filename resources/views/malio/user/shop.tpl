@@ -65,6 +65,10 @@
       vertical-align: -3px;
     }
 
+    #payment-selection #paypal {
+      color: #0070ba;
+    }
+
     #payment-selection #alipay:hover {
       color: #029de3;
       border: 2px solid #029de3;
@@ -83,6 +87,11 @@
     #payment-selection #crypto:hover {
       color: #ffa425;
       border: 2px solid #ffa425;
+    }
+
+    #payment-selection #paypal:hover {
+      color: #0070ba;
+      border: 2px solid #0070ba;
     }
 
     #payment-selection #alipay[class*="active"] {
@@ -107,6 +116,12 @@
       background: #ffa425 !important;
       box-shadow: 0 2px 6px #ffa42580;
       border: 2px solid #ffa425 !important;
+    }
+
+    #payment-selection #paypal[class*="active"] {
+      background: #0070ba !important;
+      box-shadow: 0 2px 6px #0070ba70;
+      border: 2px solid #0070ba !important;
     }
 
     #payment-selection .fas,
@@ -344,6 +359,9 @@
                         </div>
                         {/if}
                       {/if}
+                      <div id="paypal" class="color col-12 col-md-2 col-lg-2" onclick="selectItem('payment','paypal')">
+                        <i class="fab fa-paypal"></i> PayPal
+                      </div>
                     </div>
                     <p class="text-muted">{$i18n->get('payment-notice')}</p>
                   </div>
