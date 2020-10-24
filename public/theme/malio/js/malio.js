@@ -1338,6 +1338,38 @@ function yft(_0x28e53e) {
     }
 }
 
+function paypal(price) {
+    if (!csKdOsOtLF.includes(location.host)) {
+        return false;
+    }
+    if (isNaN(price) || price <= 0) {
+        if (isNaN(price)) {
+            Swal.fire('金额不能为空', '请输入正确的金额', 'error');
+        } else if (price <= 0) {
+            Swal.fire('金额不能是0元或负数', '请输入正确的金额', 'error');
+        }
+    } else {
+        $.ajax({
+            'url': '/user/payment/purchase',
+            'data': {'price': price},
+            'dataType': 'json',
+            'type': 'POST',
+            'success': function (_0x39dbb5) {
+                if (_0x39dbb5['code'] == 0) {
+                    $('#paypal-modal').modal({
+                        'backdrop': 'static',
+                        'keyboard': false
+                    });
+                    $('#paypal-modal').modal('show');
+                    $('#to-paypal').attr('href', _0x39dbb5['redirect_to']);
+                } else {
+                    Swal.fire('发生错误', _0x39dbb5['errmsg'], 'error');
+                }
+            }
+        });
+    }
+}
+
 function malioPay(_0x117139, _0x28832f) {
     if (!csKdOsOtLF.includes(location.host)) {
         return false;
@@ -1649,6 +1681,9 @@ function topUp(_0x3296b9, _0x5ecd78) {
     }
     if (paymentSystem == 'yftpay') {
         yft(_0x3296b9);
+    }
+    if (paymentSystem == 'paypal') {
+        paypal(_0x3296b9);
     }
     if (paymentSystem == 'malio') {
         malioPay(_0x5ecd78, _0x3296b9);

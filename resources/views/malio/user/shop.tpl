@@ -324,10 +324,12 @@
                     <div class="section-title">{$i18n->get('payment')}</div>
                     <div class="colors row">
                       {if $config['payment_system'] != malio}
+                        {if $malio_config['mups_alipay'] != 'none'}
                         <div id="alipay" class="color col-12 col-md-2 col-lg-2 active" onclick="selectItem('payment','alipay')">
                           <i class="fab fa-alipay" style="font-size: 1.1rem;vertical-align: -1px;margin-right: 2px;"></i> {$i18n->get('alipay')}
                         </div>
-                        {if $config['payment_system'] != 'f2fpay' && $config['payment_system'] != 'spay' && $config['payment_system'] != 'payssion'}
+                        {/if}
+                        {if $malio_config['mups_wechat'] != 'none' && $config['payment_system'] != 'f2fpay' && $config['payment_system'] != 'spay' && $config['payment_system'] != 'payssion'}
                         <div id="wechat" class="color col-12 col-md-2 col-lg-2" onclick="selectItem('payment','wechat')">
                           <i class="malio-wechat-pay" style="font-size: 1.1rem;vertical-align: -1px;"></i> {$i18n->get('wechat-pay')}
                         </div>
@@ -347,6 +349,11 @@
                           <i class="malio-unionpay"></i> {$i18n->get('unionpay')}
                         </div>
                         {/if}
+                        {if $config['payment_system'] == 'paypal'}
+                        <div id="paypal" class="color col-12 col-md-2 col-lg-2" onclick="selectItem('payment','paypal')">
+                          <i class="fab fa-paypal"></i> PayPal
+                        </div>
+                        {/if}
                       {else}
                         {if $malio_config['mups_alipay'] != 'none'}
                         <div id="alipay" class="color col-12 col-md-2 col-lg-2 active" onclick="selectItem('payment','alipay')">
@@ -359,9 +366,6 @@
                         </div>
                         {/if}
                       {/if}
-                      <div id="paypal" class="color col-12 col-md-2 col-lg-2" onclick="selectItem('payment','paypal')">
-                        <i class="fab fa-paypal"></i> PayPal
-                      </div>
                     </div>
                     <p class="text-muted">{$i18n->get('payment-notice')}</p>
                   </div>
@@ -721,6 +725,24 @@
 </div>
 {/if}
 
+{if $config['payment_system'] == 'paypal'}
+<div class="modal fade" tabindex="-1" role="dialog" id="paypal-modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{$i18n->get('payment')}</h5>
+      </div>
+      <div class="modal-body">
+        <div style="text-align: center">{$i18n->get('pay-now-modal-text')}</div>
+      </div>
+      <div class="modal-footer bg-whitesmoke br">
+        <a id="to-paypal" href="##" target="blank" class="btn btn-primary">{$i18n->get('continue-pay')}</a>
+      </div>
+    </div>
+  </div>
+</div>
+{/if}
+
 {if $config['payment_system'] == 'malio'}
 <div class="modal fade" tabindex="-1" role="dialog" id="maliopay-modal">
   <div class="modal-dialog" role="document">
@@ -769,7 +791,6 @@
   </div>
 </div>
 {/if}
-
 
 {if $malio_config['shop_style'] == 'legacy'}
 <div class="modal fade" tabindex="-1" role="dialog" id="legacy-modal-1">

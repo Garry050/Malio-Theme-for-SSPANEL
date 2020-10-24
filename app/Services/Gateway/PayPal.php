@@ -49,7 +49,7 @@ class PayPal extends AbstractPayment
     public function purchase($request, $response, $args)
     {
         $price = $request->getParsedBodyParam('price', null);
-        $price = filter_var($price, FILTER_SANITIZE_NUMBER_INT);
+        $price = filter_var($price, FILTER_VALIDATE_FLOAT);
         if ($price <= 0) {
             return $response->withJson(['code' => -1, 'message' => 'invalid price'], 400);
         }
@@ -87,12 +87,14 @@ class PayPal extends AbstractPayment
             ->setTransactions([$transaction]);
 
         try {
-            $payment->create($this->api);
+              $payment->create($this->api);
             $approvalUrl = $payment->getApprovalLink();
 
             return $response->withJson([
                 'code' => 0,
                 'redirect_to' => $approvalUrl,
+                'price' => $price,
+                'test' => $amount->getTotal()
             ]);
         } catch (PayPalConnectionException $ex) {
             return $response->withJson([
