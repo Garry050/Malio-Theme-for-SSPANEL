@@ -92,9 +92,7 @@ class PayPal extends AbstractPayment
 
             return $response->withJson([
                 'code' => 0,
-                'redirect_to' => $approvalUrl,
-                'price' => $price,
-                'test' => $amount->getTotal()
+                'redirect_to' => $approvalUrl
             ]);
         } catch (PayPalConnectionException $ex) {
             return $response->withJson([
