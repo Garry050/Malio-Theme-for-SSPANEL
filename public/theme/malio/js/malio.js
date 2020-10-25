@@ -1363,7 +1363,7 @@ function paypal(price) {
                     $('#paypal-modal').modal('show');
                     $('#to-paypal').attr('href', _0x39dbb5['redirect_to']);
                 } else {
-                    Swal.fire('发生错误', _0x39dbb5['errmsg'], 'error');
+                    Swal.fire('发生错误', _0x39dbb5['message'], 'error');
                 }
             }
         });
