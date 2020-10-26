@@ -121,7 +121,7 @@ class PayPal extends AbstractPayment
      */
     public function getPurchaseHTML()
     {
-        return View::getSmarty()->fetch('user/paypal.tpl');
+        return '';
     }
 
     /**

@@ -31,6 +31,13 @@
       color: #fff;
       z-index: 1;
     }
+
+    .paypal:focus+.selectgroup-button,
+    .paypal:checked+.selectgroup-button {
+      background-color: #0070ba;
+      color: #fff;
+      z-index: 1;
+    }
   </style>
 </head>
 
@@ -226,13 +233,13 @@
                       <div class="col-sm-12 {if $config['payment_system'] != 'f2fpay'}col-md-7{else}col-md-3{/if}">
                         <div class="selectgroup w-100">
                           {if $config['payment_system'] != malio}
-                            {if $config['payment_system'] != 'payjs'}
+                            {if $malio_config['mups_alipay'] != 'none' && $config['payment_system'] != 'payjs'}
                             <label class="selectgroup-item">
                               <input type="radio" name="payment" value="alipay" class="selectgroup-input alipay" checked="">
                               <span class="selectgroup-button selectgroup-button-icon"><i class="fab fa-alipay mr-1"></i>{$i18n->get('alipay')}</span>
                             </label>
                             {/if}
-                            {if $config['payment_system'] != 'f2fpay' && $config['payment_system'] != 'spay' && $config['payment_system'] != 'payssion'}
+                            {if $malio_config['mups_wechat'] != 'none' && $config['payment_system'] != 'f2fpay' && $config['payment_system'] != 'spay' && $config['payment_system'] != 'payssion'}
                             <label class="selectgroup-item">
                               {if $config['payment_system'] == 'payjs'}
                               <input type="radio" name="payment" value="wechat" class="selectgroup-input wechat-pay" checked="">
@@ -258,6 +265,12 @@
                             <label class="selectgroup-item">
                               <input type="radio" name="payment" value="unionpay" class="selectgroup-input">
                               <span class="selectgroup-button selectgroup-button-icon"><i class="malio-unionpay mr-1"></i>{$i18n->get('unionpay')}</span>
+                            </label>
+                            {/if}
+                            {if $config['payment_system'] == 'paypal'}
+                            <label class="selectgroup-item">
+                              <input type="radio" name="payment" value="paypal" class="selectgroup-input paypal">
+                              <span class="selectgroup-button selectgroup-button-icon"><i class="fab fa-paypal mr-1"></i>PayPal</span>
                             </label>
                             {/if}
                           {else}

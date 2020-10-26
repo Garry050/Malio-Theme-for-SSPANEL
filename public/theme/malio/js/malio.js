@@ -749,6 +749,9 @@ function walletTopup(_0x4e5773) {
     if (paymentSystem == 'yftpay') {
         yft(_0x1ed654);
     }
+    if (paymentSystem == 'paypal') {
+        paypal(_0x1ed654);
+    }
     if (paymentSystem == 'malio') {
         malioPay(_0x4e5773, _0x1ed654);
     }
@@ -1354,16 +1357,22 @@ function paypal(price) {
             'data': {'price': price},
             'dataType': 'json',
             'type': 'POST',
-            'success': function (_0x39dbb5) {
-                if (_0x39dbb5['code'] == 0) {
-                    $('#paypal-modal').modal({
-                        'backdrop': 'static',
-                        'keyboard': false
-                    });
-                    $('#paypal-modal').modal('show');
-                    $('#to-paypal').attr('href', _0x39dbb5['redirect_to']);
+            'success': function (res) {
+                if (res['code'] == 0) {
+                    var location = document.location.toString().split('#')[0].split('?')[0];
+                    var path = location.split('//')[1].split('/')[2];
+                    if (path === 'code') {
+                        window.location.href = res['redirect_to'];
+                    } else {
+                        $('#paypal-modal').modal({
+                            'backdrop': 'static',
+                            'keyboard': false
+                        });
+                        $('#paypal-modal').modal('show');
+                        $('#to-paypal').attr('href', res['redirect_to']);
+                    }
                 } else {
-                    Swal.fire('发生错误', _0x39dbb5['message'], 'error');
+                    Swal.fire('发生错误', res['message'], 'error');
                 }
             }
         });
@@ -1691,6 +1700,7 @@ function topUp(_0x3296b9, _0x5ecd78) {
     tid = setTimeout(_0x2e5175, 1000);
 
     function _0x2e5175() {
+        var flg = true;
         $.ajax({
             'type': 'GET',
             'url': '/user/money',
@@ -1700,6 +1710,7 @@ function topUp(_0x3296b9, _0x5ecd78) {
                 if (_0x50f5d6['ret']) {
                     console.log(confirmShop);
                     if (parseFloat(_0x50f5d6['money']) >= parseFloat(confirmShop.price)) {
+                        flg = false;
                         clearTimeout(tid);
                         buyConfirm(confirmShop.id);
                     }
@@ -1709,7 +1720,7 @@ function topUp(_0x3296b9, _0x5ecd78) {
                 console.log(_0x4d4556);
             }
         });
-        tid = setTimeout(_0x2e5175, 1000);
+        if (flg) tid = setTimeout(_0x2e5175, 1000);
     }
 }
 
