@@ -59,7 +59,7 @@ class PayPal extends AbstractPayment
         //todo
         $redirectUrls = new RedirectUrls();
         $redirectUrls->setReturnUrl(Config::get('baseUrl') . '/user/payment/return')
-            ->setCancelUrl(Config::get('baseUrl') . '/user/code');
+            ->setCancelUrl(Config::get('baseUrl') . '/user');
 
         $pl = new Paylist();
         $pl->userid = $user->id;
