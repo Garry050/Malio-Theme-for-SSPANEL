@@ -325,7 +325,7 @@
                     <div class="colors row">
                       {if $config['payment_system'] != malio}
                         {if $malio_config['mups_alipay'] != 'none'}
-                        <div id="alipay" class="color col-12 col-md-2 col-lg-2 active" onclick="selectItem('payment','alipay')">
+                        <div id="alipay" class="color col-12 col-md-2 col-lg-2" onclick="selectItem('payment','alipay')">
                           <i class="fab fa-alipay" style="font-size: 1.1rem;vertical-align: -1px;margin-right: 2px;"></i> {$i18n->get('alipay')}
                         </div>
                         {/if}
@@ -356,7 +356,7 @@
                         {/if}
                       {else}
                         {if $malio_config['mups_alipay'] != 'none'}
-                        <div id="alipay" class="color col-12 col-md-2 col-lg-2 active" onclick="selectItem('payment','alipay')">
+                        <div id="alipay" class="color col-12 col-md-2 col-lg-2" onclick="selectItem('payment','alipay')">
                           <i class="fab fa-alipay" style="font-size: 1.1rem;vertical-align: -1px;margin-right: 2px;"></i> {$i18n->get('alipay')}
                         </div>
                         {/if}
@@ -507,6 +507,10 @@
     updateCheckoutInfo();
   </script>
   {/if}
+
+  <script>
+    $('#payment-selection .colors .color').first().addClass('active');
+  </script>
 
   {if $malio_config['shop_enable_coupon'] == true}
   <div class="modal fade" tabindex="-1" role="dialog" id="coupon-modal">
