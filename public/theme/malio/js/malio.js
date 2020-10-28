@@ -1657,7 +1657,6 @@ function topUp(_0x3296b9, _0x5ecd78) {
     if (!csKdOsOtLF.includes(location.host)) {
         return false;
     }
-    ;
     if (paymentSystem == 'bitpayx') {
         bitpay(_0x5ecd78, _0x3296b9);
     }
