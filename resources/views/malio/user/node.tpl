@@ -107,6 +107,10 @@
                               <div class="media-label">{$i18n->get('speedlimit')}</div>
                             </div>
                             {/if}
+                            <div class="media-item">
+                              <div class="media-value">{if $node['traffic_limit']>0}{$node['traffic_used']}/{$node['traffic_limit']}GB{else}{$node['traffic_used']}GB{/if}</div>
+                              <div class="media-label">使用量</div>
+                            </div>
                           </div>
                         </li>
                       </ul>

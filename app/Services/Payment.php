@@ -9,7 +9,24 @@
 namespace App\Services;
 
 use App\Services\Gateway\{
-    AopF2F, Codepay, DoiAMPay, PaymentWall, ChenPay, SPay, TrimePay, BitPayX, TomatoPay, flyfoxpay, PAYJS, F2Fpay_PAYJS, StripePay, Payssion, YftPay, MalioPay, IDtPay
+    AopF2F,
+    Codepay,
+    DoiAMPay,
+    PaymentWall,
+    ChenPay,
+    SPay,
+    TrimePay,
+    BitPayX,
+    TomatoPay,
+    flyfoxpay,
+    PAYJS,
+    F2Fpay_PAYJS,
+    StripePay,
+    Payssion,
+    YftPay,
+    MalioPay,
+    IDtPay,
+    PayPal
 };
 
 class Payment
@@ -30,9 +47,9 @@ class Payment
                 return new ChenPay();
             case ('bitpayx'):
                 return new BitPayX(Config::get('bitpay_secret'));
-            case("tomatopay"):
+            case('tomatopay'):
                 return new TomatoPay();
-            case("flyfoxpay"):
+            case('flyfoxpay'):
                 return new flyfoxpay();
             case ('payjs'):
                 return new PAYJS(Config::get('payjs_key'));
@@ -46,8 +63,10 @@ class Payment
                 return new YftPay();
             case ('malio'):
                 return new MalioPay();
-            case ("idtpay"):
+            case ('idtpay'):
                 return new IDtPay();
+            case ('paypal'):
+                return new PayPal(Config::get('paypal_clientid'), Config::get('paypal_secret'), Config::get('paypal_mode'));
             default:
                 return null;
         }

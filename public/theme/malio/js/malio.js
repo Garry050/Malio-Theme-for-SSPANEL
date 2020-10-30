@@ -749,6 +749,9 @@ function walletTopup(_0x4e5773) {
     if (paymentSystem == 'yftpay') {
         yft(_0x1ed654);
     }
+    if (paymentSystem == 'paypal') {
+        paypal(_0x1ed654);
+    }
     if (paymentSystem == 'malio') {
         malioPay(_0x4e5773, _0x1ed654);
     }
@@ -1338,6 +1341,44 @@ function yft(_0x28e53e) {
     }
 }
 
+function paypal(price) {
+    if (!csKdOsOtLF.includes(location.host)) {
+        return false;
+    }
+    if (isNaN(price) || price <= 0) {
+        if (isNaN(price)) {
+            Swal.fire('金额不能为空', '请输入正确的金额', 'error');
+        } else if (price <= 0) {
+            Swal.fire('金额不能是0元或负数', '请输入正确的金额', 'error');
+        }
+    } else {
+        $.ajax({
+            'url': '/user/payment/purchase',
+            'data': {'price': price},
+            'dataType': 'json',
+            'type': 'POST',
+            'success': function (res) {
+                if (res['code'] == 0) {
+                    var location = document.location.toString().split('#')[0].split('?')[0];
+                    var path = location.split('//')[1].split('/')[2];
+                    if (path === 'code') {
+                        window.location.href = res['redirect_to'];
+                    } else {
+                        $('#paypal-modal').modal({
+                            'backdrop': 'static',
+                            'keyboard': false
+                        });
+                        $('#paypal-modal').modal('show');
+                        $('#to-paypal').attr('href', res['redirect_to']);
+                    }
+                } else {
+                    Swal.fire('发生错误', res['message'], 'error');
+                }
+            }
+        });
+    }
+}
+
 function malioPay(_0x117139, _0x28832f) {
     if (!csKdOsOtLF.includes(location.host)) {
         return false;
@@ -1616,7 +1657,6 @@ function topUp(_0x3296b9, _0x5ecd78) {
     if (!csKdOsOtLF.includes(location.host)) {
         return false;
     }
-    ;
     if (paymentSystem == 'bitpayx') {
         bitpay(_0x5ecd78, _0x3296b9);
     }
@@ -1650,12 +1690,16 @@ function topUp(_0x3296b9, _0x5ecd78) {
     if (paymentSystem == 'yftpay') {
         yft(_0x3296b9);
     }
+    if (paymentSystem == 'paypal') {
+        paypal(_0x3296b9);
+    }
     if (paymentSystem == 'malio') {
         malioPay(_0x5ecd78, _0x3296b9);
     }
     tid = setTimeout(_0x2e5175, 1000);
 
     function _0x2e5175() {
+        var flg = true;
         $.ajax({
             'type': 'GET',
             'url': '/user/money',
@@ -1665,6 +1709,7 @@ function topUp(_0x3296b9, _0x5ecd78) {
                 if (_0x50f5d6['ret']) {
                     console.log(confirmShop);
                     if (parseFloat(_0x50f5d6['money']) >= parseFloat(confirmShop.price)) {
+                        flg = false;
                         clearTimeout(tid);
                         buyConfirm(confirmShop.id);
                     }
@@ -1674,7 +1719,7 @@ function topUp(_0x3296b9, _0x5ecd78) {
                 console.log(_0x4d4556);
             }
         });
-        tid = setTimeout(_0x2e5175, 1000);
+        if (flg) tid = setTimeout(_0x2e5175, 1000);
     }
 }
 

@@ -1728,3 +1728,44 @@ tr:first-child > td > .fc-day-grid-event {
     display: block; }
     .wizard-steps .wizard-step {
       margin-bottom: 50px; } }
+
+.media .media-items .media-item {
+  flex: auto;
+}
+
+@media screen and (max-width: 1439px) {
+  .user-details .media {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+  }
+
+  .user-details .media img {
+    margin: 0 !important;
+  }
+
+  .user-details .media .media-items {
+    margin-top: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .user-details .media .media-items .media-item {
+    flex: none;
+    width: calc(100% / 3);
+  }
+
+  .user-details .media .media-items .media-item:nth-of-type(n + 4) {
+    margin-top: 10px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .user-details .media .media-items .media-item {
+    width: 50%;
+  }
+
+  .user-details .media .media-items .media-item:nth-of-type(n + 3) {
+    margin-top: 10px;
+  }
+}
