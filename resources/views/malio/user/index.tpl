@@ -142,7 +142,7 @@
                 {$i18n->get('no-enough-data-alert')}
               </div>
               {/if}
-              {if ($user->lastSsTime() == '从未使用喵' and $user->class>0) || $malio_config['index_show_alert_to_tutorial'] == true}
+              {if ($user->lastSsTime() == '未使用' and $user->class>0) || $malio_config['index_show_alert_to_tutorial'] == true}
               <div class="alert alert-primary">
                 <a href="/user/tutorial" class="alert-link" style="font-weight:400">{$i18n->get('new-user-guide-alert')}</a>
               </div>
@@ -230,7 +230,7 @@
                         <div class="card-stats-title" style="padding-top: 0;padding-bottom: 4px;">
                           <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                              <li class="breadcrumb-item active" aria-current="page">{$i18n->get('last-used-time')}: {if $user->lastSsTime() == '从未使用喵'}{$i18n->get('never-used')}{else}{substr($user->lastSsTime(), 5)}{/if}</li>
+                              <li class="breadcrumb-item active" aria-current="page">{$i18n->get('last-used-time')}: {if $user->lastSsTime() == '未使用'}{$i18n->get('never-used')}{else}{substr($user->lastSsTime(), 5)}{/if}</li>
                             </ol>
                           </nav>
                         </div>
@@ -571,12 +571,12 @@
         success: function (res) {
           if (res) {
             $("#result").modal();
-            $("#msg").html("获取成功");
+            $("#msg").html("取得成功！");
             $(id).data('data', res);
             console.log(res);
           } else {
             $("#result").modal();
-            $("#msg").html("获取失败，请稍后再试");
+            $("#msg").html("取得に失敗しました。再度やり直してください");
           }
         }
       });
@@ -586,9 +586,9 @@
         }
       });
       clipboard.on('success', function (e) {
-        var title = '已复制到您的剪贴板';
+        var title = 'クリップボードにコピー';
         if (jumpurl != '') {
-          title = '复制成功，即将跳转到 APP';
+          title = 'コピー完了。対象のアプリにリダイレクトします…';
         }
         swal({
           type: 'success',

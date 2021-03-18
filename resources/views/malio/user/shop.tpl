@@ -199,7 +199,7 @@
                   </div>
                   <div class="pricing-padding">
                     <div class="pricing-price">
-                      <div>{$plan['currency']}{$plan['price']}</div>
+                      <div>{$plan['price']}{$plan['currency']}</div>
                       <div>{$plan['billing']}</div>
                     </div>
                     <div class="pricing-details">
@@ -230,7 +230,7 @@
                   </div>
                   <div class="pricing-padding">
                     <div class="pricing-price">
-                      <div>{$plan['currency']}{$plan['price']}</div>
+                      <div>{$plan['price']}{$plan['currency']}</div>
                       <div>{$plan['billing']}</div>
                     </div>
                     <div class="pricing-details">
@@ -275,7 +275,7 @@
                       {foreach $I18N['plans-info'][$i18n->lang] as $name => $plan}
                       {$price_exploded = explode(".",$plan['price'])}
                       <div id="{$name}" class="color col-12 col-md-2 col-lg-2" onclick="selectItem('plan','{$name}')">
-                        <span class="pricing-inside"><span class="pricing-super">¥</span>{intval($plan['price'])}<span class="pricing-super">.{if count($price_exploded) == 2}{$price_exploded[1]}{else}0{/if}</span><span class="per-month">/{$i18n->get('mo')}</span></span>
+                        <span class="pricing-inside"></span>{intval($plan['price'])}円　<span class="per-month">/{$i18n->get('mo')}</span></span>
                         <span class="badge badge-primary">{$plan['name']}</span>
                       </div>
                       {/foreach}
