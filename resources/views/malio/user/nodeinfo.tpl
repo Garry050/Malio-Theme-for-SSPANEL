@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 
 <head>
   <meta charset="UTF-8">
@@ -56,7 +56,7 @@
 {/if}
 
 
-  <title>节点信息 &mdash; {$config["appName"]}</title>
+  <title>サーバー情報 &mdash; {$config["appName"]}</title>
 
 </head>
 
@@ -84,7 +84,7 @@
               {continue}
           {/if}
           <li class="nav-item">
-            <a class="nav-link {if $node->mu_only == 1 and $first_mu_node_one == ture}active{/if}" id="ssr-{$single_muport['server']->server}-tab" data-toggle="tab" href="#ssr-{$single_muport['server']->server}" role="tab" aria-controls="ss-{$single_muport['server']->server}" aria-selected="{if $node->mu_only == 1 and $first_mu_node_one == ture}ture{$first_mu_node_one = false}{else}false{/if}">ShadowsocksR ({$single_muport['server']->server}单端口)</a>
+            <a class="nav-link {if $node->mu_only == 1 and $first_mu_node_one == ture}active{/if}" id="ssr-{$single_muport['server']->server}-tab" data-toggle="tab" href="#ssr-{$single_muport['server']->server}" role="tab" aria-controls="ss-{$single_muport['server']->server}" aria-selected="{if $node->mu_only == 1 and $first_mu_node_one == ture}ture{$first_mu_node_one = false}{else}false{/if}">ShadowsocksR ({$single_muport['server']->server}【単一ポート】)</a>
           </li>
         {/foreach}
         {/if}
@@ -101,7 +101,7 @@
             <div class="col-12 col-sm-3 col-md-3">
               <ul class="nav nav-pills flex-column" id="myTab4" role="tablist">
                 <li class="nav-item">
-                  <a class="nav-link active" id="trojan-info-tab" data-toggle="tab" href="#trojan-info" role="tab" aria-controls="trojan-info" aria-selected="true">信息</a>
+                  <a class="nav-link active" id="trojan-info-tab" data-toggle="tab" href="#trojan-info" role="tab" aria-controls="trojan-info" aria-selected="true">サーバー情報</a>
                 </li>
               </ul>
             </div>
@@ -109,9 +109,9 @@
               <div class="tab-content no-padding" id="myTab2Content">
                 <div class="tab-pane fade active show" id="trojan-info" role="tabpanel" aria-labelledby="trojan-info-tab">
                   {$sort14Node = URL::getTrojanItem($user, $node, false)}
-                  <p>服务器地址：<code class="card-tag tag-blue">{$sort14Node['address']}</code></p>
-                  <p>服务器端口：<code class="card-tag tag-volcano">{$sort14Node['port']}</code></p>
-                  <p>密码：<code class="card-tag tag-geekblue">{$sort14Node['passwd']}</code></p>
+                  <p>サーバーアドレス：<code class="card-tag tag-blue">{$sort14Node['address']}</code></p>
+                  <p>ポート番号：<code class="card-tag tag-volcano">{$sort14Node['port']}</code></p>
+                  <p>パスワード：<code class="card-tag tag-geekblue">{$sort14Node['passwd']}</code></p>
                   {if $sort14Node['host'] != $sort14Node['address']}
                       <p>HOST&PEER：<code class="card-tag tag-green">{$sort14Node['host']}</code></p>
                   {/if}
@@ -127,16 +127,16 @@
             <div class="col-12 col-sm-3 col-md-3">
               <ul class="nav nav-pills flex-column" id="myTab4" role="tablist">
                 <li class="nav-item">
-                  <a class="nav-link active" id="ssr-info-tab" data-toggle="tab" href="#ssr-info" role="tab" aria-controls="ssr-info" aria-selected="true">信息</a>
+                  <a class="nav-link active" id="ssr-info-tab" data-toggle="tab" href="#ssr-info" role="tab" aria-controls="ssr-info" aria-selected="true">設定情報</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" id="ssr-qrcode-tab" data-toggle="tab" href="#ssr-qrcode" role="tab" aria-controls="ssr-qrcode" aria-selected="false">二维码</a>
+                  <a class="nav-link" id="ssr-qrcode-tab" data-toggle="tab" href="#ssr-qrcode" role="tab" aria-controls="ssr-qrcode" aria-selected="false">QRコード</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" id="ssr-link-tab" data-toggle="tab" href="#ssr-link" role="tab" aria-controls="ssr-link" aria-selected="false">链接</a>
+                  <a class="nav-link" id="ssr-link-tab" data-toggle="tab" href="#ssr-link" role="tab" aria-controls="ssr-link" aria-selected="false">リンク</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" id="ssr-json-tab" data-toggle="tab" href="#ssr-json" role="tab" aria-controls="ssr-json" aria-selected="false">JSON</a>
+                  <a class="nav-link" id="ssr-json-tab" data-toggle="tab" href="#ssr-json" role="tab" aria-controls="ssr-json" aria-selected="false">JSON形式</a>
                 </li>
               </ul>
             </div>
@@ -145,42 +145,37 @@
                 <div class="tab-pane fade active show" id="ssr-info" role="tabpanel" aria-labelledby="ssr-info-tab">
                   {$ssr_item = URL::getItem($user, $node, $mu, $relay_rule_id, 0)}
                   {if $ssr_item['obfs']=="v2ray"}
-                  <p>您好，Shadowsocks V2Ray-Plugin 节点需要您的加密方式使用 AEAD 系列。请您到 资料编辑
-                    页面修改后再来查看此处。</p>
+                  <p>このサーバーを使用するには「サーバー設定」→「暗号化方式」から”AEAD”がつく項目に設定する必要があります。</p>
                   {else}
-                  <p>服务器地址：<code>{$ssr_item['address']}</code><br>
-                    服务器端口：<code>{$ssr_item['port']}</code><br>
-                    加密方式：<code>{$ssr_item['method']}</code><br>
-                    密码：<code>{$ssr_item['passwd']}</code><br>
-                    协议：<code>{$ssr_item['protocol']}</code><br>
-                    协议参数：<code>{$ssr_item['protocol_param']}</code><br>
-                    混淆：<code>{$ssr_item['obfs']}</code><br>
-                    混淆参数：<code>{$ssr_item['obfs_param']}</code><br></p>
+                  <p>サーバーアドレス：<code>{$ssr_item['address']}</code><br>
+                    ポート番号：<code>{$ssr_item['port']}</code><br>
+                    暗号化方式：<code>{$ssr_item['method']}</code><br>
+                    パスワード：<code>{$ssr_item['passwd']}</code><br>
+                    プロトコル：<code>{$ssr_item['protocol']}</code><br>
+                    プロトコルパラメーター：<code>{$ssr_item['protocol_param']}</code><br>
+                    OBFS：<code>{$ssr_item['obfs']}</code><br>
+                    OBFSパラメーター：<code>{$ssr_item['obfs_param']}</code><br></p>
                   {/if}
                 </div>
                 <div class="tab-pane fade" id="ssr-qrcode" role="tabpanel" aria-labelledby="ssr-qrcode-tab">
                   {if $ssr_item['obfs']=="v2ray"}
-                  <p>您好，Shadowsocks V2Ray-Plugin 节点需要您的加密方式使用 AEAD 系列。请您到 资料编辑
-                    页面修改后再来查看此处。</p>
+                  <p>このサーバーを使用するには「サーバー設定」→「暗号化方式」から”AEAD”がつく項目に設定する必要があります。</p>
                   {else}
                   <div id="ssr-qrcode-img"></div>
                   {/if}
                 </div>
                 <div class="tab-pane fade" id="ssr-link" role="tabpanel" aria-labelledby="ssr-link-tab">
                   {if $ssr_item['obfs']=="v2ray"}
-                  <p>您好，Shadowsocks V2Ray-Plugin 节点需要您的加密方式使用 AEAD 系列。请您到 资料编辑
-                    页面修改后再来查看此处。</p>
+                  <p>このサーバーを使用するには「サーバー設定」→「暗号化方式」から”AEAD”がつく項目に設定する必要があります。</p>
                   {else}
-                  <p><a href="##" class="copy-text" data-clipboard-text="{URL::getItemUrl($ssr_item, 0)}">点我复制配置链接</a>
+                  <p><a href="##" class="copy-text" data-clipboard-text="{URL::getItemUrl($ssr_item, 0)}">設定URLをコピーする</a>
                   </p>
-                  <p><a href="{URL::getItemUrl($ssr_item, 0)}">iOS 上用 Safari
-                      打开点我即可直接添加</a></p>
+                  <p><a href="{URL::getItemUrl($ssr_item, 0)}">Safariから直接設定する(iOS専用)</a></p>
                   {/if}
                 </div>
                 <div class="tab-pane fade" id="ssr-json" role="tabpanel" aria-labelledby="ssr-json-tab">
                   {if $ssr_item['obfs']=="v2ray"}
-                  <p>您好，Shadowsocks V2Ray-Plugin 节点需要您的加密方式使用 AEAD 系列。请您到 资料编辑
-                    页面修改后再来查看此处。</p>
+                  <p>このサーバーを使用するには「サーバー設定」→「暗号化方式」から”AEAD”がつく項目に設定する必要があります。</p>
                   {else}
                   <pre style="color:#e83e8c">
 {
@@ -203,9 +198,8 @@
               </div>
             </div>
             {else}
-            <p>您好，您目前的 加密方式，混淆，或者协议设置在 ShadowsocksR 客户端下无法连接。请您选用 Shadowsocks
-              客户端来连接，或者到 资料编辑 页面修改后再来查看此处。</p>
-            <p>同时, ShadowsocksR 单端口多用户的连接不受您设置的影响,您可以在此使用相应的客户端进行连接~</p>
+            <p>現在の暗号化方式・プロトコル・OBFSの設定ではShadowsocksRクライアントでは接続できません。Shadowsocksタブをクリックしてください。</p>
+            <p>また、ShadowsocksRの単一ポートサーバーは影響を受けませんので、単一ポートサーバーに限りそのままで接続できます。</p>
             {/if}
           </div>
         </div>
@@ -215,16 +209,16 @@
             <div class="col-12 col-sm-3 col-md-3">
               <ul class="nav nav-pills flex-column" id="myTab4" role="tablist">
                 <li class="nav-item">
-                  <a class="nav-link active" id="ss-info-tab" data-toggle="tab" href="#ss-info" role="tab" aria-controls="ss-info" aria-selected="true">信息</a>
+                  <a class="nav-link active" id="ss-info-tab" data-toggle="tab" href="#ss-info" role="tab" aria-controls="ss-info" aria-selected="true">設定情報</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" id="ss-qrcode-tab" data-toggle="tab" href="#ss-qrcode" role="tab" aria-controls="ss-qrcode" aria-selected="false">二维码</a>
+                  <a class="nav-link" id="ss-qrcode-tab" data-toggle="tab" href="#ss-qrcode" role="tab" aria-controls="ss-qrcode" aria-selected="false">QRコード</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" id="ss-link-tab" data-toggle="tab" href="#ss-link" role="tab" aria-controls="ss-link" aria-selected="false">链接</a>
+                  <a class="nav-link" id="ss-link-tab" data-toggle="tab" href="#ss-link" role="tab" aria-controls="ss-link" aria-selected="false">リンク</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" id="ss-json-tab" data-toggle="tab" href="#ss-json" role="tab" aria-controls="ss-json" aria-selected="false">JSON</a>
+                  <a class="nav-link" id="ss-json-tab" data-toggle="tab" href="#ss-json" role="tab" aria-controls="ss-json" aria-selected="false">JSON形式</a>
                 </li>
               </ul>
             </div>
@@ -233,44 +227,40 @@
                 <div class="tab-pane fade active show" id="ss-info" role="tabpanel" aria-labelledby="ss-info-tab">
                   {$ss_item = URL::getItem($user, $node, $mu, $relay_rule_id, 1)}
                   {if $ss_item['obfs']=="v2ray" && URL::CanMethodConnect($user->method)!=2}
-                  <p>您好，Shadowsocks V2Ray-Plugin 节点需要您的加密方式使用 AEAD 系列。请您到 资料编辑
-                    页面修改后再来查看此处。</p>
+                  <p>このサーバーを使用するには「サーバー設定」→「暗号化方式」から”AEAD”がつく項目に設定する必要があります。</p>
                   {else}
-                  <p>服务器地址：<code>{$ss_item['address']}</code><br>
-                    服务器端口：<code>{$ss_item['port']}</code><br>
-                    加密方式：<code>{$ss_item['method']}</code><br>
-                    密码：<code>{$ss_item['passwd']}</code><br>
-                    混淆：<code>{$ss_item['obfs']}</code><br>
-                    混淆参数：<code>{$ss_item['obfs_param']}</code><br>
+                  <p>サーバーアドレス：<code>{$ss_item['address']}</code><br>
+                    ポート番号：<code>{$ss_item['port']}</code><br>
+                    暗号化方式：<code>{$ss_item['method']}</code><br>
+                    パスワード：<code>{$ss_item['passwd']}</code><br>
+                    プロトコル：<code>{$ss_item['obfs']}</code><br>
+                    プロトコルパラメーター：<code>{$ss_item['obfs_param']}</code><br>
                   </p>
                   {/if}
                 </div>
                 <div class="tab-pane fade" id="ss-qrcode" role="tabpanel" aria-labelledby="ss-qrcode-tab">
                   {if $ss_item['obfs']=="v2ray"}
-                  <p>您好，Shadowsocks V2Ray-Plugin 节点需要您的加密方式使用 AEAD 系列。请您到 资料编辑
-                    页面修改后再来查看此处。</p>
+                  <p>このサーバーを使用するには「サーバー設定」→「暗号化方式」から”AEAD”がつく項目に設定する必要があります。</p>
                   {else}
                   <div id="ss-qr-win"></div>
-                  <p>Windows专用👆</p>
-                  <p>其他平台扫这个👇</p>
+                  <p>Windows専用 👆</p>
+                  <p>その他iOS・macOS・Android等👇</p>
                   <div id="ss-qr"></div>
                   {/if}
                 </div>
                 <div class="tab-pane fade" id="ss-link" role="tabpanel" aria-labelledby="ss-link-tab">
                   {if $ss_item['obfs']=="v2ray"}
-                  <p>您好，Shadowsocks V2Ray-Plugin 节点需要您的加密方式使用 AEAD 系列。请您到 资料编辑
-                    页面修改后再来查看此处。</p>
+                  <p>このサーバーを使用するには「サーバー設定」→「暗号化方式」から”AEAD”がつく項目に設定する必要があります。</p>
                   {else}
-                  <p><a href="##" class="copy-text" data-clipboard-text="{URL::getItemUrl($ss_item, 1)}">点我复制配置链接</a>
+                  <p><a href="##" class="copy-text" data-clipboard-text="{URL::getItemUrl($ss_item, 1)}">設定URLをコピーする</a>
                   </p>
-                  <p><a href="{URL::getItemUrl($ss_item, 1)}">iOS 上用 Safari 打开点我即可直接添加</a>
+                  <p><a href="{URL::getItemUrl($ss_item, 1)}">Safariから直接設定する(iOS専用)</a>
                   </p>
                   {/if}
                 </div>
                 <div class="tab-pane fade" id="ss-json" role="tabpanel" aria-labelledby="ss-json-tab">
                   {if $ss_item['obfs']=="v2ray"}
-                  <p>您好，Shadowsocks V2Ray-Plugin 节点需要您的加密方式使用 AEAD 系列。请您到 资料编辑
-                    页面修改后再来查看此处。</p>
+                  <p>このサーバーを使用するには「サーバー設定」→「暗号化方式」から”AEAD”がつく項目に設定する必要があります。</p>
                   {else}
 <pre style="color:#e83e8c">
   {
@@ -290,7 +280,7 @@
               </div>
             </div>
             {else}
-            <p>您好，您目前的 加密方式，混淆，或者协议设置在 Shadowsocks 客户端下无法连接。请您选用 ShadowsocksR 客户端来连接，或者到资料编辑 页面修改后再来查看此处。</p>
+            <p>現在の暗号化方式・プロトコル・OBFSの設定ではShadowsocksクライアントでは接続できません。ShadowsocksRタブをクリックしてください。</p>
             {/if}
           </div>
         </div>
@@ -310,16 +300,16 @@
                 <div class="col-12 col-sm-3 col-md-3">
                   <ul class="nav nav-pills flex-column" id="myTab4" role="tablist">
                     <li class="nav-item">
-                      <a class="nav-link active" id="ssr-{$single_muport['server']->server}-info-tab" data-toggle="tab" href="#ssr-{$single_muport['server']->server}-info" role="tab" aria-controls="ssr-{$single_muport['server']->server}-info" aria-selected="true">信息</a>
+                      <a class="nav-link active" id="ssr-{$single_muport['server']->server}-info-tab" data-toggle="tab" href="#ssr-{$single_muport['server']->server}-info" role="tab" aria-controls="ssr-{$single_muport['server']->server}-info" aria-selected="true">設定情報</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" id="ssr-{$single_muport['server']->server}-qrcode-tab" data-toggle="tab" href="#ssr-{$single_muport['server']->server}-qrcode" role="tab" aria-controls="ssr-{$single_muport['server']->server}-qrcode" aria-selected="false">二维码</a>
+                      <a class="nav-link" id="ssr-{$single_muport['server']->server}-qrcode-tab" data-toggle="tab" href="#ssr-{$single_muport['server']->server}-qrcode" role="tab" aria-controls="ssr-{$single_muport['server']->server}-qrcode" aria-selected="false">QRコード</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" id="ssr-{$single_muport['server']->server}-link-tab" data-toggle="tab" href="#ssr-{$single_muport['server']->server}-link" role="tab" aria-controls="ssr-{$single_muport['server']->server}-link" aria-selected="false">链接</a>
+                      <a class="nav-link" id="ssr-{$single_muport['server']->server}-link-tab" data-toggle="tab" href="#ssr-{$single_muport['server']->server}-link" role="tab" aria-controls="ssr-{$single_muport['server']->server}-link" aria-selected="false">リンク</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" id="ssr-{$single_muport['server']->server}-json-tab" data-toggle="tab" href="#ssr-{$single_muport['server']->server}-json" role="tab" aria-controls="ssr-{$single_muport['server']->server}-json" aria-selected="false">JSON</a>
+                      <a class="nav-link" id="ssr-{$single_muport['server']->server}-json-tab" data-toggle="tab" href="#ssr-{$single_muport['server']->server}-json" role="tab" aria-controls="ssr-{$single_muport['server']->server}-json" aria-selected="false">JSON形式</a>
                     </li>
                   </ul>
                 </div>
@@ -328,42 +318,37 @@
                     <div class="tab-pane fade active show" id="ssr-{$single_muport['server']->server}-info" role="tabpanel" aria-labelledby="ssr-{$single_muport['server']->server}-info-tab">
                       {$ssr_item_mu_only = URL::getItem($user, $node, {$single_muport['server']->server}, $relay_rule_id, 0)}
                       {if $ssr_item_mu_only['obfs']=="v2ray"}
-                      <p>您好，Shadowsocks V2Ray-Plugin 节点需要您的加密方式使用 AEAD 系列。请您到 资料编辑
-                        页面修改后再来查看此处。</p>
+                      <p>このサーバーを使用するには「サーバー設定」→「暗号化方式」から”AEAD”がつく項目に設定する必要があります。</p>
                       {else}
-                      <p>服务器地址：<code>{$ssr_item_mu_only['address']}</code><br>
-                        服务器端口：<code>{$ssr_item_mu_only['port']}</code><br>
-                        加密方式：<code>{$ssr_item_mu_only['method']}</code><br>
-                        密码：<code>{$ssr_item_mu_only['passwd']}</code><br>
-                        协议：<code>{$ssr_item_mu_only['protocol']}</code><br>
-                        协议参数：<code>{$ssr_item_mu_only['protocol_param']}</code><br>
-                        混淆：<code>{$ssr_item_mu_only['obfs']}</code><br>
-                        混淆参数：<code>{$ssr_item_mu_only['obfs_param']}</code><br></p>
+                      <p>サーバーアドレス：<code>{$ssr_item_mu_only['address']}</code><br>
+                        ポート番号：<code>{$ssr_item_mu_only['port']}</code><br>
+                        暗号化方式：<code>{$ssr_item_mu_only['method']}</code><br>
+                        パスワード：<code>{$ssr_item_mu_only['passwd']}</code><br>
+                        プロトコル：<code>{$ssr_item_mu_only['protocol']}</code><br>
+                        プロトコルパラメーター：<code>{$ssr_item_mu_only['protocol_param']}</code><br>
+                        OBFS：<code>{$ssr_item_mu_only['obfs']}</code><br>
+                        OBFSパラメーター：<code>{$ssr_item_mu_only['obfs_param']}</code><br></p>
                       {/if}
                     </div>
                     <div class="tab-pane fade" id="ssr-{$single_muport['server']->server}-qrcode" role="tabpanel" aria-labelledby="ssr-{$single_muport['server']->server}-qrcode-tab">
                       {if $ssr_item_mu_only['obfs']=="v2ray"}
-                      <p>您好，Shadowsocks V2Ray-Plugin 节点需要您的加密方式使用 AEAD 系列。请您到 资料编辑
-                        页面修改后再来查看此处。</p>
+                      <p>このサーバーを使用するには「サーバー設定」→「暗号化方式」から”AEAD”がつく項目に設定する必要があります。</p>
                       {else}
                       <div id="ssr-{$single_muport['server']->server}-qrcode-img"></div>
                       {/if}
                     </div>
                     <div class="tab-pane fade" id="ssr-{$single_muport['server']->server}-link" role="tabpanel" aria-labelledby="ssr-{$single_muport['server']->server}-link-tab">
                       {if $ssr_item_mu_only['obfs']=="v2ray"}
-                      <p>您好，Shadowsocks V2Ray-Plugin 节点需要您的加密方式使用 AEAD 系列。请您到 资料编辑
-                        页面修改后再来查看此处。</p>
+                      <p>このサーバーを使用するには「サーバー設定」→「暗号化方式」から”AEAD”がつく項目に設定する必要があります。</p>
                       {else}
-                      <p><a href="##" class="copy-text" data-clipboard-text="{URL::getItemUrl($ssr_item_mu_only, 0)}">点我复制配置链接</a>
+                      <p><a href="##" class="copy-text" data-clipboard-text="{URL::getItemUrl($ssr_item_mu_only, 0)}">設定URLをコピーする</a>
                       </p>
-                      <p><a href="{URL::getItemUrl($ssr_item_mu_only, 0)}">iOS 上用 Safari
-                          打开点我即可直接添加</a></p>
+                      <p><a href="{URL::getItemUrl($ssr_item_mu_only, 0)}">Safariから直接設定する(iOS専用)</a></p>
                       {/if}
                     </div>
                     <div class="tab-pane fade" id="ssr-{$single_muport['server']->server}-json" role="tabpanel" aria-labelledby="ssr-{$single_muport['server']->server}-json-tab">
                       {if $ssr_item_mu_only['obfs']=="v2ray"}
-                      <p>您好，Shadowsocks V2Ray-Plugin 节点需要您的加密方式使用 AEAD 系列。请您到 资料编辑
-                        页面修改后再来查看此处。</p>
+                      <p>このサーバーを使用するには「サーバー設定」→「暗号化方式」から”AEAD”がつく項目に設定する必要があります。</p>
                       {else}
                       <pre style="color:#e83e8c">
     {
@@ -386,9 +371,8 @@
                   </div>
                 </div>
                 {else}
-                <p>您好，您目前的 加密方式，混淆，或者协议设置在 ShadowsocksR 客户端下无法连接。请您选用 Shadowsocks
-                  客户端来连接，或者到 资料编辑 页面修改后再来查看此处。</p>
-                <p>同时, ShadowsocksR 单端口多用户的连接不受您设置的影响,您可以在此使用相应的客户端进行连接~</p>
+                <p>現在の暗号化方式・プロトコル・OBFSの設定ではShadowsocksRクライアントでは接続できません。Shadowsocksタブをクリックしてください。</p>
+                <p>また、ShadowsocksRの単一ポートサーバーは影響を受けませんので、単一ポートサーバーに限りそのままで接続できます。</p>
                 {/if}
               </div>
             </div>
