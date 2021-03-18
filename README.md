@@ -1,4 +1,3 @@
-# 此项目本是个付费主题，可是他们放弃了，我不想 Malio 就此消失就放到了这里
 # 不能删改页面底部的 Powered by SSPANEL，不能删改staff页面的任何信息。
 ## 删除Powered by SSPANEL可能会导致你的网站被D，现在 Theme by editXY 可以随意去掉
 
@@ -11,7 +10,7 @@
 由于原开发团队已经放弃Malio主题，因此此项目欢迎各种贡献，包括但不限于改进，新功能，文档和代码改进，问题和错误报告。
 
 ## Wiki
-[详细安装教程](https://gitlab.com/maxitio/malio-theme-for-sspanel/wikis/详细安装教程)
+[详细安装教程](https://github.com/Cadwalader307/Malio-Theme-for-SSPANEL/wiki/%E8%AF%A6%E7%BB%86%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B)
 
 [授权说明](https://gitlab.com/maxitio/malio-theme-for-sspanel/wikis/授权说明)
 
