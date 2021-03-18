@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>产生了一个错误 - {$config["appName"]} </title>
+    <title>エラーが発生しました - {$config["appName"]} </title>
     <meta name="keywords" content=""/>
     <meta name="description" content=""/>
     <meta charset="utf-8"/>

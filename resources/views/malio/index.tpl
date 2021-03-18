@@ -196,13 +196,13 @@
           {if $user->isLogin}
           <div class="mt-3 text-job d-lg-none">
             <a href="/user" style="color:rgba(255,255,255,.6);">
-              进入用户中心
+              ユーザーページに移動する
             </a>
           </div>
           {else}
           <div class="mt-3 text-job d-lg-none">
             <a href="/auth/login" style="color:rgba(255,255,255,.6);">
-              已有账号？立即登录
+              ログイン
             </a>
           </div>
           {/if}
@@ -368,7 +368,7 @@
             </div>
             <div class="pricing-padding">
               <div class="pricing-price">
-                <div>{$plan['currency']}{$plan['price']}</div>
+                <div>{$plan['price']}{$plan['currency']}</div>
                 <div>{$plan['billing']}</div>
               </div>
               <div class="pricing-details">
@@ -428,45 +428,6 @@
     </div>
   </section>
 
-  <section id="contact-support" class="before-footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="card long-shadow">
-            <div class="card-body d-flex p-45">
-              <div class="card-icon bg-primary text-white">
-                <i class="fas fa-headset"></i>
-              </div>
-              <div>
-                <h5>{$i18n->get('index-section-6-card-1-title')}</h5>
-                <p class="lh-sm">{$i18n->get('index-section-6-card-1-desc')}</p>
-                <div class="mt-4 text-right">
-                  <a href="/" class="link-icon">{$i18n->get('contact-us')} <i class="fas fa-chevron-right"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card long-shadow">
-            <div class="card-body p-45 d-flex">
-              <div class="card-icon bg-primary text-white">
-                <i class="far fa-life-ring"></i>
-              </div>
-              <div>
-                <h5>{$i18n->get('index-section-6-card-2-title')}</h5>
-                <p>{$i18n->get('index-section-6-card-2-desc')}</p>
-                <div class="mt-4 text-right">
-                  <a href="/" class="link-icon">{$i18n->get('contact-us')} <i class="fas fa-chevron-right"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <footer>
     <div class="container">
       <div class="row">
@@ -478,28 +439,6 @@
             <div class="mt-4 social-links">
               <a href="/"><i class="fab fa-github"></i></a>
               <a href="/"><i class="fab fa-twitter"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-7">
-          <div class="row">
-            <div class="col-md-4">
-              <h4>{$i18n->get('dashboard')}</h4>
-              <ul>
-                <li><a href="/" data-i18n="dashboard">商店</a></li>
-                <li><a href="/" data-i18n="dashboard">节点列表</a></li>
-                <li><a href="/" data-i18n="dashboard">邀请注册</a></li>
-                <li><a href="/" data-i18n="dashboard">下载和使用</a></li>
-              </ul>
-            </div>
-            <div class="col-md-4">
-              <h4>{$i18n->get('support')}</h4>
-              <ul>
-                <li><a href="/" data-i18n="dashboard">联系我们</a></li>
-                <li><a href="/" data-i18n="dashboard">新建工单</a></li>
-                <li><a href="/" data-i18n="dashboard">常见问题</a></li>
-                <li><a href="/" data-i18n="dashboard">加入 Telegram 群组</a></li>
-              </ul>
             </div>
           </div>
         </div>

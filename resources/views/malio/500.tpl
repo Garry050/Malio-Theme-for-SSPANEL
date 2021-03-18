@@ -29,7 +29,7 @@
             </div>
             <div class="page-search">
               <div class="mt-3">
-                <a href="/">返回主页</a>
+                <a href="/">トップページに戻る</a>
               </div>
             </div>
           </div>
