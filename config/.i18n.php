@@ -747,8 +747,8 @@ $I18N['please-your-confirm-password'] = array(
 );
 $I18N['invitation-code'] = array(
     'en' => 'Invitation Code',
-    'zh-cn' => '邀请码'
-##  'zh-cn' => '招待コード'
+    'zh-cn' => '招待コード'
+##  'zh-cn' => '邀请码'
 );
 $I18N['optional'] = array(
     'en' => 'Optional',
@@ -964,7 +964,7 @@ $I18N['data-usage-72-hours'] = array(
 );
 $I18N['load-data'] = array(
     'en' => 'Load Data',
-    'zh-cn' => '加载数据'
+    'zh-cn' => '読込中'
 );
 $I18N['data-useage'] = array(
     'en' => 'Data Usage',
