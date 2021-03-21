@@ -457,10 +457,10 @@ class Job
                 if ($node->isNodeOnline() === false && !file_exists(BASE_PATH . '/storage/' . $node->id . '.offline')) {
                     if (Config::get('useScFtqq') == true && Config::get('enable_detect_offline_useScFtqq') == true) {
                         $ScFtqq_SCKEY = Config::get('ScFtqq_SCKEY');
-                        $text = '管理员您好，系统发现节点 ' . $node->name . ' 掉线了，请您及时处理。';
+                        $text =  . $node->name . ' のサーバーがダウンしています。できるだけ早く復旧させましょう。';
                         $postdata = http_build_query(
                             array(
-                                'text' => Config::get('appName') . '-节点掉线了',
+                                'text' => Config::get('appName') . '-サーバーダウン',
                                 'desp' => $text
                             )
                         );
@@ -478,9 +478,9 @@ class Job
 
                     foreach ($adminUser as $user) {
                         echo 'Send offline mail to user: ' . $user->id;
-                        $subject = Config::get('appName') . '-系统警告';
+                        $subject = Config::get('appName') . '-システム警告';
                         $to = $user->email;
-                        $text = '管理员您好，系统发现节点 ' . $node->name . ' 掉线了，请您及时处理。';
+                        $text = . $node->name . ' のサーバーがダウンしています。できるだけ早く復旧させましょう。';
                         try {
                             Mail::send($to, $subject, 'news/warn.tpl', [
                                 'user' => $user,
@@ -510,10 +510,10 @@ class Job
                 } elseif ($node->isNodeOnline() === true && file_exists(BASE_PATH . '/storage/' . $node->id . '.offline')) {
                     if (Config::get('useScFtqq') == true && Config::get('enable_detect_offline_useScFtqq') == true) {
                         $ScFtqq_SCKEY = Config::get('ScFtqq_SCKEY');
-                        $text = '管理员您好，系统发现节点 ' . $node->name . ' 恢复上线了。';
+                        $text = . $node->name . ' のサーバーが復旧しました。';
                         $postdata = http_build_query(
                             array(
-                                'text' => Config::get('appName') . '-节点恢复上线了',
+                                'text' => Config::get('appName') . '-サーバー復旧',
                                 'desp' => $text
                             )
                         );
@@ -531,9 +531,9 @@ class Job
                     }
                     foreach ($adminUser as $user) {
                         echo 'Send offline mail to user: ' . $user->id;
-                        $subject = Config::get('appName') . '-系统提示';
+                        $subject = Config::get('appName') . '-システム情報';
                         $to = $user->email;
-                        $text = '管理员您好，系统发现节点 ' . $node->name . ' 恢复上线了。';
+                        $text =  . $node->name . ' のサーバーがダウンしました。ご迷惑をおかけして申し訳ございません。復旧まで今しばらくお待ち下さい。';
                         try {
                             Mail::send($to, $subject, 'news/warn.tpl', [
                                 'user' => $user,
@@ -585,13 +585,13 @@ class Job
                                     'utf-8//IGNORE',
                                     $Userlocation
                                 ) . '-' . iconv('gbk', 'utf-8//IGNORE', $location['country']);
-                                $subject = Config::get('appName') . '-系统警告';
+                                $subject = Config::get('appName') . '-システム警告';
                                 $to = $user->email;
-                                $text = '您好，系统发现您的账号在 ' . iconv(
+                                $text = 'こんにちは。あなたのアカウントが下記の場所からログインされました。 ' . iconv(
                                     'gbk',
                                     'utf-8//IGNORE',
                                     $Userlocation
-                                ) . ' 有异常登录，请您自己自行核实登录行为。有异常请及时修改密码。';
+                                ) . ' 心当たりのない場所(Gaming-SSR利用中のサーバーを除く)の場合はパスワードを今すぐ変更してください。';
                                 try {
                                     Mail::send($to, $subject, 'news/warn.tpl', [
                                         'user' => $user,
@@ -626,9 +626,9 @@ class Job
                 $user->d = 0;
                 $user->last_day_t = 0;
 
-                $subject = Config::get('appName') . '-您的用户账户已经过期了';
+                $subject = Config::get('appName') . '-あなたのアカウントの有効期限切れ';
                 $to = $user->email;
-                $text = '您好，系统发现您的账号已经过期了。';
+                $text = '申し訳ございませんがプランの有効期限が切れました。利用予定のある方はご連絡ください。';
                 try {
                     Mail::send($to, $subject, 'news/warn.tpl', [
                         'user' => $user,
@@ -671,9 +671,9 @@ class Job
                 }
 
                 if ($under_limit == 'true' && !file_exists(BASE_PATH . '/storage/traffic_notified/' . $user->id . '.userid')) {
-                    $subject = Config::get('appName') . ' - 您的剩余流量过低';
+                    $subject = Config::get('appName') . ' - 残りデータ使用量について';
                     $to = $user->email;
-                    $text = '您好，系统发现您剩余流量已经低于 ' . Config::get('notify_limit_value') . $unit_text . ' 。';
+                    $text = 'あなたが利用できる残りデータ使用量は ' . Config::get('notify_limit_value') . $unit_text . ' です。';
                     try {
                         Mail::send($to, $subject, 'news/warn.tpl', [
                             'user' => $user,
@@ -700,9 +700,9 @@ class Job
                 $user->money <= Config::get('auto_clean_min_money')
 
             ) {
-                $subject = Config::get('appName') . '-您的用户账户已经被删除了';
+                $subject = Config::get('appName') . '-アカウント削除';
                 $to = $user->email;
-                $text = '您好，系统发现您的账户已经过期 ' . Config::get('account_expire_delete_days') . ' 天了，帐号已经被删除。';
+                $text = '申し訳ございませんがアカウントの有効期限が切れてから ' . Config::get('account_expire_delete_days') . ' 日経過し、連絡がございませんでしたのでアカウントが削除されました。';
                 try {
                     Mail::send($to, $subject, 'news/warn.tpl', [
                         'user' => $user,
@@ -726,9 +726,9 @@ class Job
                 $user->class == 0 &&
                 $user->money <= Config::get('auto_clean_min_money')
             ) {
-                $subject = Config::get('appName') . '-您的用户账户已经被删除了';
+                $subject = Config::get('appName') . '-アカウント削除';
                 $to = $user->email;
-                $text = '您好，系统发现您的账号已经 ' . Config::get('auto_clean_uncheck_days') . ' 天没签到了，帐号已经被删除。';
+                $text = '申し訳ございませんがあなたのアカウントは ' . Config::get('auto_clean_uncheck_days') . ' 日間ログインされていないためアカウントを削除されました。';
                 try {
                     Mail::send($to, $subject, 'news/warn.tpl', [
                         'user' => $user,
@@ -747,9 +747,9 @@ class Job
                 $user->class == 0 &&
                 $user->money <= Config::get('auto_clean_min_money')
             ) {
-                $subject = Config::get('appName') . '-您的用户账户已经被删除了';
+                $subject = Config::get('appName') . '-アカウント削除';
                 $to = $user->email;
-                $text = '您好，系统发现您的账号已经 ' . Config::get('auto_clean_unused_days') . ' 天没使用了，帐号已经被删除。';
+                $text = '申し訳ございませんがあなたのアカウントは ' . Config::get('auto_clean_unused_days') . ' 日間利用されていないためアカウントが削除されました。';
                 try {
                     Mail::send($to, $subject, 'news/warn.tpl', [
                         'user' => $user,
@@ -767,16 +767,16 @@ class Job
                 strtotime($user->class_expire) < time() &&
                 strtotime($user->class_expire) > 1420041600
             ) {
-                $text = '您好，系统发现您的账号等级已经过期了。';
+                $text = 'プランの有効期限が切れました。';
                 $reset_traffic = Config::get('class_expire_reset_traffic');
                 if ($reset_traffic >= 0) {
                     $user->transfer_enable = Tools::toGB($reset_traffic);
                     $user->u = 0;
                     $user->d = 0;
                     $user->last_day_t = 0;
-                    $text .= '流量已经被重置为' . $reset_traffic . 'GB';
+                    $text .= '利用可能データ量は' . $reset_traffic . 'GB' . 'にリセットされました。';
                 }
-                $subject = Config::get('appName') . '-您的账户等级已经过期了';
+                $subject = Config::get('appName') . '-プランの有効期限切れ';
                 $to = $user->email;
                 try {
                     Mail::send($to, $subject, 'news/warn.tpl', [
@@ -877,9 +877,9 @@ class Job
                         }
                         foreach ($adminUser as $user) {
                             echo 'Send gfw mail to user: ' . $user->id . '-';
-                            $subject = Config::get('appName') . '-系统警告';
+                            $subject = Config::get('appName') . '-システム警告';
                             $to = $user->email;
-                            $text = '管理员您好，系统发现节点 ' . $node->name . ' 被墙了，请您及时处理。';
+                            $text = . $node->name . ' のサーバーはGFWによってブロックされています。対処をお願いします。';
                             try {
                                 Mail::send($to, $subject, 'news/warn.tpl', [
                                     'user' => $user,
@@ -908,9 +908,9 @@ class Job
                         }
                         foreach ($adminUser as $user) {
                             echo 'Send gfw mail to user: ' . $user->id . '-';
-                            $subject = Config::get('appName') . '-系统提示';
+                            $subject = Config::get('appName') . '-システム情報';
                             $to = $user->email;
-                            $text = '管理员您好，系统发现节点 ' . $node->name . ' 溜出墙了。';
+                            $text = . $node->name . ' のサーバーはGFWからブロックされていないようです。';
                             try {
                                 Mail::send($to, $subject, 'news/warn.tpl', [
                                     'user' => $user,

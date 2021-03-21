@@ -10,13 +10,11 @@ $I18N['class-plan-name-map'] = array(  // 用户等级 => 等级名字
         1 => 'Basic',
         2 => 'Pro',
         3 => 'VIP',
-        4 => 'SVIP'
     ),
     'zh-cn' => array(
         1 => 'Basic',
         2 => 'Pro',
         3 => 'VIP',
-        4 => 'SVIP'
     ),
 /*
     'zh-cn' => array(
@@ -31,13 +29,11 @@ $I18N['node-class-name-map'] = array(  // 节点等级 => 节点列表等级标�
         1 => 'Basic',
         2 => 'Pro',
         3 => 'VIP',
-        4 => 'SVIP'
     ),
     'zh-cn' => array(
         1 => 'Basic',
         2 => 'Pro',
         3 => 'VIP',
-        4 => 'SVIP'
     ),
 /*
     'zh-cn' => array(

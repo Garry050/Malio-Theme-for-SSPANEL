@@ -59,9 +59,9 @@ class TicketController extends AdminController
         $user = User::where('id','=', $ticket_main->userid)->first();
         $ticket_url = Config::get('baseUrl') . '/user/ticket/' . $ticket_main->id . '/view';
         
-        $subject = '您提出的工单已被回复';
+        $subject = 'お問い合わせに返信がありました';
         $to = $user->email;
-        $text = '管理员已回复您提出的工单';
+        $text = '管理人があなたのお問い合わせに返信しました。';
         try {
             Mail::send($to, $subject, 'ticket/ticket_reply.tpl', [
                 'user' => $user, 'text' => $text, 'content' => $content, 'title' => $ticket_main->title, 'ticket_url' => $ticket_url
@@ -75,7 +75,7 @@ class TicketController extends AdminController
             $keyboard = new \TelegramBot\Api\Types\Inline\InlineKeyboardMarkup(
                 [
                     [
-                        ['text' => '回复工单', 'url' => $ticket_url]
+                        ['text' => '返信する', 'url' => $ticket_url]
                     ]
                 ]
             );

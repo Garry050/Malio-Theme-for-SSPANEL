@@ -133,9 +133,9 @@ class UserController extends AdminController
             $res['ret'] = 1;
             $res['msg'] = '新用户注册成功 用户名: ' . $email . ' 随机初始密码: ' . $pass;
             $res['email_error'] = 'success';
-            $subject = Config::get('appName') . '-新用户注册通知';
+            $subject = Config::get('appName') . '-アカウント作成完了';
             $to = $user->email;
-            $text = '您好，管理员已经为您生成账户，用户名: ' . $email . '，登录密码为：' . $pass . '，感谢您的支持。 ';
+            $text = 'ユーザー名: ' . $email . ' 登録されたパスワード：' . $pass . 'です。機密情報ですのでご注意ください';
             try {
                 Mail::send($to, $subject, 'newuser.tpl', [
                     'user' => $user, 'text' => $text,

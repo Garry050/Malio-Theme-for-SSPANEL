@@ -1313,9 +1313,9 @@ class UserController extends BaseController
         if (Config::get('mail_ticket') == true && $markdown != '') {
             $adminUser = User::where('is_admin', '=', '1')->get();
             foreach ($adminUser as $user) {
-                $subject = '新工单被开启';
+                $subject = '通知：お問い合わせがあります';
                 $to = $user->email;
-                $text = '有新工单需要您处理';
+                $text = '早急にこの問い合わせに対応してください';
                 try {
                     Mail::send($to, $subject, 'ticket/new_ticket.tpl', [
                         'user' => $this->user, 'admin' =>$user, 'text' => $text, 'title' => $title, 'content' => $content, 'ticket_url' =>$ticket_url 
@@ -1332,7 +1332,7 @@ class UserController extends BaseController
             $keyboard = new \TelegramBot\Api\Types\Inline\InlineKeyboardMarkup(
                 [
                     [
-                        ['text' => '回复工单', 'url' => $ticket_url]
+                        ['text' => '返信する', 'url' => $ticket_url]
                     ]
                 ]
             );
@@ -1402,9 +1402,9 @@ class UserController extends BaseController
             if (Config::get('mail_ticket') == true && $markdown != '') {
                 $adminUser = User::where('is_admin', '=', '1')->get();
                 foreach ($adminUser as $user) {
-                    $subject = Config::get('appName') . '-工单被重新开启';
+                    $subject = Config::get('appName') . '-チケットが再開しました';
                     $to = $user->email;
-                    $text = '管理员，有人重新开启了<a href="' . Config::get('baseUrl') . '/admin/ticket/' . $ticket_main->id . '/view">工单</a>，请您及时处理。';
+                    $text = '<a href="' . Config::get('baseUrl') . '/admin/ticket/' . $ticket_main->id . '/view">チケット</a>が再度開かれました。早急に対応してください';
                     try {
                         Mail::send($to, $subject, 'news/warn.tpl', [
                             'user' => $user, 'text' => $text
@@ -1418,7 +1418,7 @@ class UserController extends BaseController
                 $ScFtqq_SCKEY = Config::get('ScFtqq_SCKEY');
                 $postdata = http_build_query(
                     array(
-                        'text' => Config::get('appName') . '-工单被重新开启',
+                        'text' => Config::get('appName') . '-チケットが再開しました',
                         'desp' => $markdown
                     )
                 );
@@ -1436,9 +1436,9 @@ class UserController extends BaseController
             if (Config::get('mail_ticket') == true && $markdown != '') {
                 $adminUser = User::where('is_admin', '=', '1')->get();
                 foreach ($adminUser as $user) {
-                    $subject = Config::get('appName') . '-工单被回复';
+                    $subject = Config::get('appName') . '-チケットに返信がありました';
                     $to = $user->email;
-                    $text = '管理员，有人回复了<a href="' . Config::get('baseUrl') . '/admin/ticket/' . $ticket_main->id . '/view">工单</a>，请您及时处理。';
+                    $text = '管<a href="' . Config::get('baseUrl') . '/admin/ticket/' . $ticket_main->id . '/view">チケット</a>に返信がありました。対応お願いします。';
                     try {
                         Mail::send($to, $subject, 'news/warn.tpl', [
                             'user' => $user, 'text' => $text

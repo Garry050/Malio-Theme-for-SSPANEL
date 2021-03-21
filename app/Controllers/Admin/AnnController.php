@@ -35,7 +35,7 @@ class AnnController extends AdminController
         $PushBear = $request->getParam('PushBear');
         $vip = $request->getParam('vip');
         $content = $request->getParam('content');
-        $subject = Config::get('appName') . '-公告';
+        $subject = Config::get('appName') . '-お知らせ';
 
         if ($request->getParam('page') == 1) {
             $ann = new Ann();

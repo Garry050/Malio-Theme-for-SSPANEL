@@ -324,7 +324,7 @@ class AuthController extends BaseController
             $ev->code = $code;
             $ev->save();
 
-            $subject = Config::get('appName') . '- 验证邮件';
+            $subject = Config::get('appName') . '- メールアドレスの確認';
 
             try {
                 Mail::send($email, $subject, 'auth/verify.tpl', [

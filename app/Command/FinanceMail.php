@@ -25,7 +25,7 @@ class FinanceMail
         $text_json = $datatables->generate();
         $text_array = json_decode($text_json, true);
         $codes = $text_array['data'];
-        $text_html = '<table border=1><tr><td>金额</td><td>用户ID</td><td>用户名</td><td>充值时间</td>';
+        $text_html = '<table border=1><tr><td>金額</td><td>ユーザーID</td><td>ユーザー名</td><td>時刻</td>';
         $income_count = 0;
         $income_total = 0.00;
         foreach ($codes as $code) {
