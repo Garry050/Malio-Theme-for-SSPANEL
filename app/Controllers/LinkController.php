@@ -641,20 +641,20 @@ class LinkController extends BaseController
         $info_array = (count(Config::get('sub_message')) != 0 ? (array) Config::get('sub_message') : []);
         if (strtotime($user->expire_in) > time()) {
             if ($user->transfer_enable == 0) {
-                $unusedTraffic = '剩余流量：0';
+                $unusedTraffic = '残り使用量：0';
             } else {
-                $unusedTraffic = '剩余流量：' . $user->unusedTraffic();
+                $unusedTraffic = '残り使用量：' . $user->unusedTraffic();
             }
-            $expire_in = '过期时间：';
+            $expire_in = 'プランが失効する日時：';
             if ($user->class_expire != '1989-06-04 00:05:00') {
                 $userClassExpire = explode(' ', $user->class_expire);
                 $expire_in .= $userClassExpire[0];
             } else {
-                $expire_in .= '无限期';
+                $expire_in .= '無期限';
             }
         } else {
-            $unusedTraffic  = '账户已过期，请续费后使用';
-            $expire_in      = '账户已过期，请续费后使用';
+            $unusedTraffic  = 'プランの有効期限を過ぎました。再度ストアから購入してください';
+            $expire_in      = 'プランの有効期限を過ぎました。再度ストアから購入してください';
         }
         if (!in_array($list, ['quantumult', 'quantumultx', 'shadowrocket'])) {
             $info_array[] = $unusedTraffic;
