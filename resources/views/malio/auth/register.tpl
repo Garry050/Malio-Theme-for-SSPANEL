@@ -232,7 +232,7 @@
 
                   <div class="form-group">
                     <div class="custom-control custom-checkbox">
-                      <input type="checkbox" name="agree" class="custom-control-input" id="agree" checked="checked" required>
+                      <input type="checkbox" name="agree" class="custom-control-input" id="agree" required>
                       <label class="custom-control-label" for="agree">{$i18n->get('sign-up-tos-check')}</label>
                       <div class="invalid-feedback">
                         {$i18n->get('check-tos-feedback')}
