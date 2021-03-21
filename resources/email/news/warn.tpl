@@ -147,7 +147,7 @@
                           </font>
                           <div style="height: 3px; line-height: 3px; font-size: 1px;">&nbsp;</div>
                           <font face="'Nunito', sans-serif" color="#1a1a1a" style="font-size: 17px; line-height: 20px;">
-                            <span style="font-family: 'Nunito', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 17px; line-height: 20px;"><a href="{$config['baseUrl']}" target="_blank" style="font-family: 'Nunito', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 17px; line-height: 20px; text-decoration: none;">访问官网</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="{$config['baseUrl']}/user/" target="_blank" style="font-family: 'Nunito', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 17px; line-height: 20px; text-decoration: none;">用户中心</a></span>
+                            <span style="font-family: 'Nunito', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 17px; line-height: 20px;"><a href="{$config['baseUrl']}" target="_blank" style="font-family: 'Nunito', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 17px; line-height: 20px; text-decoration: none;">Gaming-SSRにアクセス</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="{$config['baseUrl']}/user/" target="_blank" style="font-family: 'Nunito', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 17px; line-height: 20px; text-decoration: none;">用户中心</a></span>
                           </font>
                           <div style="height: 35px; line-height: 35px; font-size: 33px;">&nbsp;</div>
                         </td>

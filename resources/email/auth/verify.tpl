@@ -127,11 +127,11 @@
                     </font>
                     <div style="height: 33px; line-height: 33px; font-size: 31px;">&nbsp;</div>
                     <font face="'Nunito', sans-serif" color="#585858" style="font-size: 24px; line-height: 32px;">
-                      <span style="font-family: 'Nunito', Arial, Tahoma, Geneva, sans-serif; color: #585858; font-size: 24px; line-height: 32px;">以下6位数字是邮箱验证码，请在网站上填写以通过验证</span>
+                      <span style="font-family: 'Nunito', Arial, Tahoma, Geneva, sans-serif; color: #585858; font-size: 24px; line-height: 32px;">下記の6桁のコードをサイト上に入力してください。</span>
                     </font>
                     <div style="height: 18px; line-height: 33px; font-size: 31px;">&nbsp;</div>
                     <font face="'Nunito', sans-serif" color="#585858" style="font-size: 24px; line-height: 32px;">
-                      <span style="font-family: 'Nunito', Arial, Tahoma, Geneva, sans-serif; color: #aaaaaa; font-size: 16px; line-height: 32px;">(如果您从未请求发送邮箱验证码，请忽略此邮件)</span>
+                      <span style="font-family: 'Nunito', Arial, Tahoma, Geneva, sans-serif; color: #aaaaaa; font-size: 16px; line-height: 32px;">(このメールに見に覚えがない場合は無視してください)</span>
                     </font>
                     <div style="height: 33px; line-height: 33px; font-size: 31px;">&nbsp;</div>
                     <table class="mob_btn" cellpadding="0" cellspacing="0" border="0" style="background: #6777ef; border-radius: 4px;">
@@ -163,7 +163,7 @@
                           </font>
                           <div style="height: 3px; line-height: 3px; font-size: 1px;">&nbsp;</div>
                           <font face="'Nunito', sans-serif" color="#1a1a1a" style="font-size: 17px; line-height: 20px;">
-                            <span style="font-family: 'Nunito', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 17px; line-height: 20px;"><a href="{$config['baseUrl']}" target="_blank" style="font-family: 'Nunito', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 17px; line-height: 20px; text-decoration: none;">访问官网</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="{$config['baseUrl']}/user/" target="_blank" style="font-family: 'Nunito', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 17px; line-height: 20px; text-decoration: none;">用户中心</a></span>
+                            <span style="font-family: 'Nunito', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 17px; line-height: 20px;"><a href="{$config['baseUrl']}" target="_blank" style="font-family: 'Nunito', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 17px; line-height: 20px; text-decoration: none;">Gaming-SSRにアクセス</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="{$config['baseUrl']}/user/" target="_blank" style="font-family: 'Nunito', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 17px; line-height: 20px; text-decoration: none;">用户中心</a></span>
                           </font>
                           <div style="height: 35px; line-height: 35px; font-size: 33px;">&nbsp;</div>
                         </td>

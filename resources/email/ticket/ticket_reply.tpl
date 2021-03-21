@@ -137,7 +137,7 @@
                         <td align="center" valign="top">
                           <span style="display: block; border: 1px solid #6777ef; border-radius: 200px; padding: 8px 24px 6px 24px;; font-family: 'Nunito', Arial, Verdana, Tahoma, Geneva, sans-serif; color: #ffffff; font-size: 20px; line-height: 30px; text-decoration: none; white-space: nowrap; font-weight: 600;">
                             <font face="'Nunito', sans-serif" color="#ffffff" style="font-size: 20px; line-height: 30px; text-decoration: none; white-space: nowrap; font-weight: 600;">
-                              <a href="{$ticket_url}" style="font-family: 'Nunito', Arial, Verdana, Tahoma, Geneva, sans-serif; color: #ffffff; font-size: 20px; line-height: 30px; text-decoration: none; white-space: nowrap; font-weight: 600;">查看工单</a>
+                              <a href="{$ticket_url}" style="font-family: 'Nunito', Arial, Verdana, Tahoma, Geneva, sans-serif; color: #ffffff; font-size: 20px; line-height: 30px; text-decoration: none; white-space: nowrap; font-weight: 600;">チケットを見る</a>
                             </font>
                           </span>
                         </td>

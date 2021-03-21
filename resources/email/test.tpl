@@ -4,8 +4,8 @@
     <meta charset="utf-8">
 </head>
 <body>
-<p>This is a testing mail.</p>
-<p>Send from {$config["appName"]}</p>
+<p>これはテストメールです</p>
+<p>{$config["appName"]}から送信されました</p>
 <p>{$time}</p>
 </body>
 </html>
