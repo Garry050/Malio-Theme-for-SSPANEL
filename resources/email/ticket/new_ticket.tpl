@@ -124,7 +124,7 @@
                 <tr>
                   <td align="left" valign="top">
                     <font face="'Nunito', sans-serif" color="#1a1a1a" style="font-size: 52px; line-height: 60px; font-weight: 300; letter-spacing: -1.5px;">
-                      <span style="font-family: 'Nunito', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 52px; line-height: 60px; font-weight: 300; letter-spacing: -1.5px;">管理人たちへ</span>
+                      <span style="font-family: 'Nunito', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 52px; line-height: 60px; font-weight: 300; letter-spacing: -1.5px;">Hi 管理人</span>
                     </font>
                     <div style="height: 33px; line-height: 33px; font-size: 31px;">&nbsp;</div>
                     <font face="'Nunito', sans-serif" color="#585858" style="font-size: 24px; line-height: 32px;">
@@ -170,7 +170,7 @@
                         <td align="center" valign="top">
                           <span style="display: block; border: 1px solid #6777ef; border-radius: 200px; padding: 8px 24px 6px 24px;; font-family: 'Nunito', Arial, Verdana, Tahoma, Geneva, sans-serif; color: #ffffff; font-size: 20px; line-height: 30px; text-decoration: none; white-space: nowrap; font-weight: 600;">
                             <font face="'Nunito', sans-serif" color="#ffffff" style="font-size: 20px; line-height: 30px; text-decoration: none; white-space: nowrap; font-weight: 600;">
-                              <a href="{$ticket_url}" style="font-family: 'Nunito', Arial, Verdana, Tahoma, Geneva, sans-serif; color: #ffffff; font-size: 20px; line-height: 30px; text-decoration: none; white-space: nowrap; font-weight: 600;">回复工单</a>
+                              <a href="{$ticket_url}" style="font-family: 'Nunito', Arial, Verdana, Tahoma, Geneva, sans-serif; color: #ffffff; font-size: 20px; line-height: 30px; text-decoration: none; white-space: nowrap; font-weight: 600;">返信する</a>
                             </font>
                           </span>
                         </td>
@@ -199,7 +199,7 @@
                           </font>
                           <div style="height: 3px; line-height: 3px; font-size: 1px;">&nbsp;</div>
                           <font face="'Nunito', sans-serif" color="#1a1a1a" style="font-size: 17px; line-height: 20px;">
-                            <span style="font-family: 'Nunito', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 17px; line-height: 20px;"><a href="{$config['baseUrl']}" target="_blank" style="font-family: 'Nunito', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 17px; line-height: 20px; text-decoration: none;">访问官网</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="{$config['baseUrl']}/user/" target="_blank" style="font-family: 'Nunito', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 17px; line-height: 20px; text-decoration: none;">用户中心</a></span>
+                            <span style="font-family: 'Nunito', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 17px; line-height: 20px;"><a href="{$config['baseUrl']}" target="_blank" style="font-family: 'Nunito', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 17px; line-height: 20px; text-decoration: none;">公式サイト</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="{$config['baseUrl']}/user/" target="_blank" style="font-family: 'Nunito', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 17px; line-height: 20px; text-decoration: none;">ログイン</a></span>
                           </font>
                           <div style="height: 35px; line-height: 35px; font-size: 33px;">&nbsp;</div>
                         </td>
