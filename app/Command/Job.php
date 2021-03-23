@@ -457,7 +457,7 @@ class Job
                 if ($node->isNodeOnline() === false && !file_exists(BASE_PATH . '/storage/' . $node->id . '.offline')) {
                     if (Config::get('useScFtqq') == true && Config::get('enable_detect_offline_useScFtqq') == true) {
                         $ScFtqq_SCKEY = Config::get('ScFtqq_SCKEY');
-                        $text =  . $node->name . ' のサーバーがダウンしています。できるだけ早く復旧させましょう。';
+                        $text =  '' . $node->name . ' のサーバーがダウンしています。できるだけ早く復旧させましょう。';
                         $postdata = http_build_query(
                             array(
                                 'text' => Config::get('appName') . '-サーバーダウン',
@@ -480,7 +480,7 @@ class Job
                         echo 'Send offline mail to user: ' . $user->id;
                         $subject = Config::get('appName') . '-システム警告';
                         $to = $user->email;
-                        $text = . $node->name . ' のサーバーがダウンしています。できるだけ早く復旧させましょう。';
+                        $text = '' . $node->name . ' のサーバーがダウンしています。できるだけ早く復旧させましょう。';
                         try {
                             Mail::send($to, $subject, 'news/warn.tpl', [
                                 'user' => $user,
@@ -510,7 +510,7 @@ class Job
                 } elseif ($node->isNodeOnline() === true && file_exists(BASE_PATH . '/storage/' . $node->id . '.offline')) {
                     if (Config::get('useScFtqq') == true && Config::get('enable_detect_offline_useScFtqq') == true) {
                         $ScFtqq_SCKEY = Config::get('ScFtqq_SCKEY');
-                        $text = . $node->name . ' のサーバーが復旧しました。';
+                        $text = '' . $node->name . ' のサーバーが復旧しました。';
                         $postdata = http_build_query(
                             array(
                                 'text' => Config::get('appName') . '-サーバー復旧',
@@ -533,7 +533,7 @@ class Job
                         echo 'Send offline mail to user: ' . $user->id;
                         $subject = Config::get('appName') . '-システム情報';
                         $to = $user->email;
-                        $text =  . $node->name . ' のサーバーがダウンしました。ご迷惑をおかけして申し訳ございません。復旧まで今しばらくお待ち下さい。';
+                        $text = '' . $node->name . ' のサーバーがダウンしました。ご迷惑をおかけして申し訳ございません。復旧まで今しばらくお待ち下さい。';
                         try {
                             Mail::send($to, $subject, 'news/warn.tpl', [
                                 'user' => $user,
@@ -879,7 +879,7 @@ class Job
                             echo 'Send gfw mail to user: ' . $user->id . '-';
                             $subject = Config::get('appName') . '-システム警告';
                             $to = $user->email;
-                            $text = . $node->name . ' のサーバーはGFWによってブロックされています。対処をお願いします。';
+                            $text = '' . $node->name . ' のサーバーはGFWによってブロックされています。対処をお願いします。';
                             try {
                                 Mail::send($to, $subject, 'news/warn.tpl', [
                                     'user' => $user,
@@ -910,7 +910,7 @@ class Job
                             echo 'Send gfw mail to user: ' . $user->id . '-';
                             $subject = Config::get('appName') . '-システム情報';
                             $to = $user->email;
-                            $text = . $node->name . ' のサーバーはGFWからブロックされていないようです。';
+                            $text = '' . $node->name . ' のサーバーはGFWからブロックされていないようです。';
                             try {
                                 Mail::send($to, $subject, 'news/warn.tpl', [
                                     'user' => $user,
