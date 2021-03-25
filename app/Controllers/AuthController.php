@@ -137,7 +137,7 @@ class AuthController extends BaseController
             }
             if (!$ret) {
                 $res['ret'] = 0;
-                $res['msg'] = '系统无法接受您的验证结果，请刷新页面后重试。';
+                $res['msg'] = 'Recaptureの結果に異常がありました。再度ページを更新してやり直してください。';
                 return $response->getBody()->write(json_encode($res));
             }
         }
@@ -147,13 +147,13 @@ class AuthController extends BaseController
 
         if ($user == null) {
             $rs['ret'] = 0;
-            $rs['msg'] = '邮箱不存在';
+            $rs['msg'] = 'このアカウントは登録されいません';
             return $response->getBody()->write(json_encode($rs));
         }
 
         if (!Hash::checkPassword($user->pass, $passwd)) {
             $rs['ret'] = 0;
-            $rs['msg'] = '邮箱或者密码错误';
+            $rs['msg'] = 'メールアドレスまたはパスワードが違います';
 
 
             $loginIP = new LoginIp();
@@ -177,14 +177,14 @@ class AuthController extends BaseController
 
             if (!$rcode) {
                 $res['ret'] = 2;
-                $res['msg'] = '两步验证码错误，如果您是丢失了生成器或者错误地设置了这个选项，您可以尝试重置密码，即可取消这个选项。';
+                $res['msg'] = '2段階認証のコードが間違っています。2段階認証の方法を持っていない場合はパスワードをリセットしてください。';
                 return $response->getBody()->write(json_encode($res));
             }
         }
 
         Auth::login($user->id, $time);
         $rs['ret'] = 1;
-        $rs['msg'] = '登录成功';
+        $rs['msg'] = 'ログインしました';
 
         $loginIP = new LoginIp();
         $loginIP->ip = $_SERVER['REMOTE_ADDR'];
@@ -205,7 +205,7 @@ class AuthController extends BaseController
         $ret = TelegramSessionManager::step2_verify_login_session($token, $number);
         if (!$ret) {
             $res['ret'] = 0;
-            $res['msg'] = '此令牌无法被使用。';
+            $res['msg'] = 'このトークンは使用できません';
             return $response->getBody()->write(json_encode($res));
         }
 
@@ -217,7 +217,7 @@ class AuthController extends BaseController
 
         Auth::login($user->id, $time);
         $rs['ret'] = 1;
-        $rs['msg'] = '登录成功';
+        $rs['msg'] = 'ログインしました';
 
         $this->logUserIp($user->id, $_SERVER['REMOTE_ADDR']);
 
@@ -282,28 +282,28 @@ class AuthController extends BaseController
 
             if ($email == '') {
                 $res['ret'] = 0;
-                $res['msg'] = '未填写邮箱';
+                $res['msg'] = 'メールアドレスが入力されていません';
                 return $response->getBody()->write(json_encode($res));
             }
 
             // check email format
             if (!Check::isEmailLegal($email)) {
                 $res['ret'] = 0;
-                $res['msg'] = '邮箱无效';
+                $res['msg'] = 'メールアドレスが正しく入力されていません';
                 return $response->getBody()->write(json_encode($res));
             }
 
             $user = User::where('email', '=', $email)->first();
             if ($user != null) {
                 $res['ret'] = 0;
-                $res['msg'] = '此邮箱已经注册';
+                $res['msg'] = 'このメールアドレスは既に登録済みです';
                 return $response->getBody()->write(json_encode($res));
             }
 
             $ipcount = EmailVerify::where('ip', '=', $_SERVER['REMOTE_ADDR'])->where('expire_in', '>', time())->count();
             if ($ipcount >= (int)Config::get('email_verify_iplimit')) {
                 $res['ret'] = 0;
-                $res['msg'] = '此IP请求次数过多';
+                $res['msg'] = 'リクエストが多すぎます。時間を開けて再度お試しください';
                 return $response->getBody()->write(json_encode($res));
             }
 
@@ -311,7 +311,7 @@ class AuthController extends BaseController
             $mailcount = EmailVerify::where('email', '=', $email)->where('expire_in', '>', time())->count();
             if ($mailcount >= 3) {
                 $res['ret'] = 0;
-                $res['msg'] = '此邮箱请求次数过多';
+                $res['msg'] = 'リクエストが多すぎます。時間を開けて再度お試しください';
                 return $response->getBody()->write(json_encode($res));
             }
 
@@ -334,12 +334,12 @@ class AuthController extends BaseController
                 ]);
             } catch (Exception $e) {
                 $res['ret'] = 1;
-                $res['msg'] = '邮件发送失败，请联系网站管理员。';
+                $res['msg'] = '確認メールの送信に失敗しました。時間を開けて再度やり直してください';
                 return $response->getBody()->write(json_encode($res));
             }
 
             $res['ret'] = 1;
-            $res['msg'] = '验证码发送成功，请查收邮件。';
+            $res['msg'] = '確認メールを送信しました。確認してください。';
             return $response->getBody()->write(json_encode($res));
         }
         $res['ret'] = 0;
@@ -374,7 +374,7 @@ class AuthController extends BaseController
             $pamas = array(
                 'access_key' => MalioConfig::get('globalsent_access_key'),
                 'mobile' => $full_phone,
-                'content' => '您的注册验证码是 '.$code
+                'content' => '登録コードは '.$code ' です';
             );
             
             $url = 'https://api.globalsent.com/send?'.http_build_query($pamas);
@@ -428,7 +428,7 @@ class AuthController extends BaseController
     {
         if (Config::get('register_mode') === 'close') {
             $res['ret'] = 0;
-            $res['msg'] = '未开放注册。';
+            $res['msg'] = '現在新規登録は停止されています';
             return $response->getBody()->write(json_encode($res));
         }
         $name = $request->getParam('name');
@@ -484,26 +484,26 @@ class AuthController extends BaseController
         if ($c == null && MalioConfig::get('code_required') == true) {
             if (Config::get('register_mode') === 'invite') {
                 $res['ret'] = 0;
-                $res['msg'] = '邀请码无效';
+                $res['msg'] = '招待コードの期限が切れています';
                 return $response->getBody()->write(json_encode($res));
             }
         } elseif ($c->user_id != 0) {
             $gift_user = User::where('id', '=', $c->user_id)->first();
             if ($gift_user == null) {
                 $res['ret'] = 0;
-                $res['msg'] = '邀请人不存在';
+                $res['msg'] = '招待コードの発行人のアカウントが存在しません';
                 return $response->getBody()->write(json_encode($res));
             }
 
             if ($gift_user->class == 0 && MalioConfig::get('code_required') == true) {
                 $res['ret'] = 0;
-                $res['msg'] = '邀请人不是VIP';
+                $res['msg'] = '招待コードの発行人のプランが現在有効ではありません';
                 return $response->getBody()->write(json_encode($res));
             }
 
             if ($gift_user->invite_num == 0 && MalioConfig::get('code_required') == true) {
                 $res['ret'] = 0;
-                $res['msg'] = '邀请人可用邀请次数为0';
+                $res['msg'] = 'この招待コードは利用できません';
                 return $response->getBody()->write(json_encode($res));
             }
         }
@@ -512,13 +512,13 @@ class AuthController extends BaseController
         // check email format
         if (!Check::isEmailLegal($email)) {
             $res['ret'] = 0;
-            $res['msg'] = '邮箱无效';
+            $res['msg'] = 'メールアドレスが正しく入力されていません';
             return $response->getBody()->write(json_encode($res));
         }
         $email_postfix = '@'.(explode("@",$email)[1]);
         if (in_array($email_postfix, MalioConfig::get('register_email_black_list')) == true) {
             $res['ret'] = 0;
-            $res['msg'] = '邮箱后缀已被拉黑';
+            $res['msg'] = 'このメールアドレスは使用できません';
             return $response->getBody()->write(json_encode($res));
         }
         if (MalioConfig::get('enable_register_email_restrict') == true) {
@@ -532,7 +532,7 @@ class AuthController extends BaseController
         $user = User::where('email', $email)->first();
         if ($user != null) {
             $res['ret'] = 0;
-            $res['msg'] = '邮箱已经被注册了';
+            $res['msg'] = 'このメールアドレスは既に登録済みです';
             return $response->getBody()->write(json_encode($res));
         }
 
@@ -540,7 +540,7 @@ class AuthController extends BaseController
             $mailcount = EmailVerify::where('email', '=', $email)->where('code', '=', $emailcode)->where('expire_in', '>', time())->first();
             if ($mailcount == null) {
                 $res['ret'] = 0;
-                $res['msg'] = '您的邮箱验证码不正确';
+                $res['msg'] = '確認コードが間違っています';
                 return $response->getBody()->write(json_encode($res));
             }
         }
@@ -549,7 +549,7 @@ class AuthController extends BaseController
             $smscount = SmsVerify::where('phone', '=', $full_phone)->where('code', '=', $sms_code)->where('expire_in', '>', time())->first();
             if ($smscount == null) {
                 $res['ret'] = 0;
-                $res['msg'] = '您的短信验证码不正确';
+                $res['msg'] = '確認コードが間違っています';
                 return $response->getBody()->write(json_encode($res));
             }
         }
@@ -557,14 +557,14 @@ class AuthController extends BaseController
         // check pwd length
         if (strlen($passwd) < 8) {
             $res['ret'] = 0;
-            $res['msg'] = '密码请大于8位';
+            $res['msg'] = 'パスワードは8文字以上にしてください';
             return $response->getBody()->write(json_encode($res));
         }
 
         // check pwd re
         if ($passwd != $repasswd) {
             $res['ret'] = 0;
-            $res['msg'] = '两次密码输入不符';
+            $res['msg'] = 'パスワードが一致しません';
             return $response->getBody()->write(json_encode($res));
         }
 
@@ -667,13 +667,13 @@ class AuthController extends BaseController
 
         if ($user->save()) {
             $res['ret'] = 1;
-            $res['msg'] = '注册成功！正在进入登录界面';
+            $res['msg'] = '登録に成功しました！ユーザーページに移動します';
             Radius::Add($user, $user->passwd);
             return $response->getBody()->write(json_encode($res));
         }
 
         $res['ret'] = 0;
-        $res['msg'] = '未知错误';
+        $res['msg'] = '不明なエラー';
         return $response->getBody()->write(json_encode($res));
     }
 
