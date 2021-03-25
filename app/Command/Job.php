@@ -457,7 +457,7 @@ class Job
                 if ($node->isNodeOnline() === false && !file_exists(BASE_PATH . '/storage/' . $node->id . '.offline')) {
                     if (Config::get('useScFtqq') == true && Config::get('enable_detect_offline_useScFtqq') == true) {
                         $ScFtqq_SCKEY = Config::get('ScFtqq_SCKEY');
-                        $text =  '' . $node->name . ' のサーバーがダウンしています。できるだけ早く復旧させましょう。';
+                        $text = '' . $node->name . ' のサーバーがダウンしています。できるだけ早く復旧させましょう。';
                         $postdata = http_build_query(
                             array(
                                 'text' => Config::get('appName') . '-サーバーダウン',
@@ -533,7 +533,7 @@ class Job
                         echo 'Send offline mail to user: ' . $user->id;
                         $subject = Config::get('appName') . '-システム情報';
                         $to = $user->email;
-                        $text = '' . $node->name . ' のサーバーがダウンしました。ご迷惑をおかけして申し訳ございません。復旧まで今しばらくお待ち下さい。';
+                        $text = '' . $node->name . ' のサーバーが復旧しました。';
                         try {
                             Mail::send($to, $subject, 'news/warn.tpl', [
                                 'user' => $user,
