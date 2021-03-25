@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>パスワードのリセット &mdash; {$config["appName"]}</title>
+  <title>找回密码 &mdash; {$config["appName"]}</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
@@ -36,25 +36,25 @@
 
             <div class="card card-primary">
               <div class="card-header">
-                <h4>パスワードのリセット</h4>
+                <h4>找回密码</h4>
               </div>
 
               <div class="card-body">
-                <p class="text-muted">もしパスワードを忘れた場合はこちらに登録時のメールアドレスを使用して送信ボタンを押してください。</p>
+                <p class="text-muted">我们将会发送一封包含重置密码链接的邮件到您的邮箱</p>
                 <div class="form-group">
-                  <label for="email">メールアドレス</label>
+                  <label for="email">邮箱</label>
                   <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
                 </div>
 
                 <div class="form-group">
                   <button id="reset" type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                    送信
+                    找回
                   </button>
                 </div>
               </div>
             </div>
             <div class="mt-5 text-muted text-center">
-              <a href="/auth/login">ログイン画面に戻る</a>
+              <a href="/auth/login">返回登录</a>
             </div>
             <div class="simple-footer">
               Copyright &copy; 2020 {$config["appName"]}
@@ -80,7 +80,7 @@
   <script>
     function reset() {
       $("#reset").attr('disabled', 'disabled');
-      $("#reset").text('送信中...');
+      $("#reset").text('发送中...');
       $.ajax({
         type: "POST",
         url: "/password/reset",
@@ -92,19 +92,19 @@
           if (data.ret == 1) {
             swal({
               type: 'success',
-              title: '送信しました',
-              text: 'もし受信していない場合は迷惑メールボックスもご確認ください',
+              title: '邮件已发送',
+              text: '如长时间未收到，请查看邮件垃圾箱',
               showCloseButton: true,
               onClose: () => {
                 window.location.assign('/auth/login')
               }
             })
           } else {
-            $("#reset").text('リセット');
+            $("#reset").text('找回');
             $("#reset").removeAttr('disabled');
             swal({
               type: 'error',
-              title: '送信失敗',
+              title: '发送失败',
               showCloseButton: true,
               text: data.msg
             })
