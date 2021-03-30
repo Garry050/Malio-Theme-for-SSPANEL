@@ -197,9 +197,9 @@ class Job
                     $user->last_day_t = 0;
                     $user->save();
 
-                    $subject = Config::get('appName') . '-您的流量被重置了';
+                    $subject = Config::get('appName') . '-データ使用量がリセットされました。';
                     $to = $user->email;
-                    $text = '您好，根据您所订购的订单 ID:' . $bought->id . '，流量已经被重置为' . $shop->reset_value() . 'GB';
+                    $text = '注文したプランID:' . $bought->id . 'に従い、データ使用可能量が残り' . $shop->reset_value() . 'GBにリセットされました';
                     try {
                         Mail::send($to, $subject, 'news/warn.tpl', [
                             'user' => $user,
@@ -228,9 +228,9 @@ class Job
                 $user->transfer_enable = $user->auto_reset_bandwidth * 1024 * 1024 * 1024;
                 $user->save();
 
-                $subject = Config::get('appName') . '-您的流量被重置了';
+                $subject = Config::get('appName') . '-データ可能量がリセットされました';
                 $to = $user->email;
-                $text = '您好，根据管理员的设置，流量已经被重置为' . $user->auto_reset_bandwidth . 'GB';
+                $text = '管理者の操作によってあなたのデータ使用可能量が残り' . $user->auto_reset_bandwidth . 'GBになりました';
                 try {
                     Mail::send($to, $subject, 'news/warn.tpl', [
                         'user' => $user,
@@ -376,9 +376,9 @@ class Job
             $shop = Shop::where('id', $bought->shopid)->first();
             if ($shop == null) {
                 $bought->delete();
-                $subject = Config::get('appName') . '-续费失败';
+                $subject = Config::get('appName') . '-プラン更新に失敗しました';
                 $to = $user->email;
-                $text = '您好，系统为您自动续费商品时，发现该商品已被下架，为能继续正常使用，建议您登录用户面板购买新的商品。';
+                $text = '大変申し訳ございませんが、現在のプランを更新することができませんでした。再度別のプランを選んで再度購入してください。';
                 try {
                     Mail::send($to, $subject, 'news/warn.tpl', [
                         'user' => $user,
@@ -406,9 +406,9 @@ class Job
                 $bought_new->coupon = '';
                 $bought_new->save();
 
-                $subject = Config::get('appName') . '-续费成功';
+                $subject = Config::get('appName') . '-プランを更新しました';
                 $to = $user->email;
-                $text = '您好，系统已经为您自动续费，商品名：' . $shop->name . ',金额:' . $shop->price . ' 元。';
+                $text = '自動的にプランを更新しました。プラン名:' . $shop->name . '、金額:' . $shop->price . ' 円。';
                 try {
                     Mail::send($to, $subject, 'news/warn.tpl', [
                         'user' => $user,
@@ -423,9 +423,9 @@ class Job
                     unlink(BASE_PATH . '/storage/' . $bought->id . '.renew');
                 }
             } elseif (!file_exists(BASE_PATH . '/storage/' . $bought->id . '.renew')) {
-                $subject = Config::get('appName') . '-续费失败';
+                $subject = Config::get('appName') . '-プラン更新に失敗しました';
                 $to = $user->email;
-                $text = '您好，系统为您自动续费商品名：' . $shop->name . ',金额:' . $shop->price . ' 元 时，发现您余额不足，请及时充值。充值后请稍等系统便会自动为您续费。';
+                $text = 'あなたが自動更新を設定したプラン名:' . $shop->name . '、金額:' . $shop->price . ' 円 ですが、残高が足りませんでした。プランを更新したい場合は早急にチャージをしていただくか、再度プランを購入してください。';
                 try {
                     Mail::send($to, $subject, 'news/warn.tpl', [
                         'user' => $user,

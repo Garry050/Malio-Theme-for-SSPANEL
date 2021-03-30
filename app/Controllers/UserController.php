@@ -1353,7 +1353,7 @@ class UserController extends BaseController
             $ScFtqq_SCKEY = Config::get('ScFtqq_SCKEY');
             $postdata = http_build_query(
                 array(
-                    'text' => Config::get('appName') . '-新工单被开启',
+                    'text' => Config::get('appName') . '-新しいチケットが開かれました',
                     'desp' => $markdown
                 )
             );
@@ -1368,7 +1368,7 @@ class UserController extends BaseController
         }
 
         $res['ret'] = 1;
-        $res['msg'] = '提交成功';
+        $res['msg'] = '送信成功';
         return $this->echoJson($response, $res);
     }
 
@@ -1473,7 +1473,7 @@ class UserController extends BaseController
                 $ScFtqq_SCKEY = Config::get('ScFtqq_SCKEY');
                 $postdata = http_build_query(
                     array(
-                        'text' => Config::get('appName') . '-工单被回复',
+                        'text' => Config::get('appName') . '-チケットに返信がありました',
                         'desp' => $markdown
                     )
                 );
@@ -2203,7 +2203,7 @@ class UserController extends BaseController
         // 创建 zip 并添加内容
         $zipArc->open($temp_file_path, \ZipArchive::CREATE);
         $zipArc->addFromString($user_config_file_name, $content);
-        $zipArc->addFromString('点击访问_' . Config::get('appName') . '.url', $site_url_content);
+        $zipArc->addFromString('ここをクリックして訪問_' . Config::get('appName') . '.url', $site_url_content);
         Tools::folderToZip($client_path, $zipArc, strlen($client_path));
         $zipArc->close();
 

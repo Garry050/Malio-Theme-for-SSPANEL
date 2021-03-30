@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>重置密码 &mdash; {$config["appName"]}</title>
+  <title>パスワードのリセット &mdash; {$config["appName"]}</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
@@ -36,13 +36,13 @@
 
             <div class="card card-primary">
               <div class="card-header">
-                <h4>重置密码</h4>
+                <h4>パスワードのリセット</h4>
               </div>
 
               <div class="card-body">
-                <p class="text-muted">请填写新密码</p>
+                <p class="text-muted">新しいパスワードを入力してください</p>
                 <div class="form-group">
-                  <label for="password">新密码</label>
+                  <label for="password">新しいパスワード</label>
                   <input id="password" type="password" class="form-control pwstrength" data-indicator="pwindicator" name="password" tabindex="2" required>
                   <div id="pwindicator" class="pwindicator">
                     <div class="bar"></div>
@@ -51,19 +51,19 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="repasswd">重复密码</label>
+                  <label for="repasswd">新しいパスワード(確認)</label>
                   <input id="repasswd" type="password" class="form-control" name="repasswd" tabindex="2" required>
                 </div>
 
                 <div class="form-group">
                   <button id="reset" type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                    重置
+                    リセットする
                   </button>
                 </div>
               </div>
             </div>
             <div class="mt-5 text-muted text-center">
-              <a href="/auth/login">返回登录</a>
+              <a href="/auth/login">トップに戻る</a>
             </div>
             <div class="simple-footer">
               Copyright &copy; 2020 {$config["appName"]}
@@ -102,7 +102,7 @@
             if (data.ret) {
               swal({
                 type: 'success',
-                title: '成功重置密码',
+                title: 'パスワードの変更に成功しました',
                 showCloseButton: true,
                 onClose: () => {
                   window.location.assign('/auth/login')
@@ -111,7 +111,7 @@
             } else {
               swal({
                 type: 'error',
-                title: '出了点问题',
+                title: 'エラー発生',
                 showCloseButton: true,
                 text: data.msg
               })

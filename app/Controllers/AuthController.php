@@ -358,14 +358,14 @@ class AuthController extends BaseController
 
             if ($phone == '' || $area_code == '') {
                 $res['ret'] = 0;
-                $res['msg'] = '请填写完整的手机号';
+                $res['msg'] = '正しい電話番号を入力してください';
                 return $response->getBody()->write(json_encode($res));
             }
 
             $ipcount = SmsVerify::where('ip', '=', $_SERVER['REMOTE_ADDR'])->where('expire_in', '>', time())->count();
             if ($ipcount >= (int)MalioConfig::get('sms_verify_iplimit')) {
                 $res['ret'] = 0;
-                $res['msg'] = '此IP请求次数过多';
+                $res['msg'] = 'リクエストが多すぎます。時間を開けて再度お試しください';
                 return $response->getBody()->write(json_encode($res));
             }
 
@@ -390,7 +390,7 @@ class AuthController extends BaseController
             
             if ($return->code != '0000') {
                 $res['ret'] = 0;
-                $res['msg'] = '发送短信验证码失败';
+                $res['msg'] = '確認コードの送信に失敗しました';
                 return $return->code;
                 return $response->getBody()->write(json_encode($res));
             } else {
@@ -401,7 +401,7 @@ class AuthController extends BaseController
                 $sv->code = $code;
                 $sv->save();
                 $res['ret'] = 1;
-                $res['msg'] = '验证码发送成功，请查收短信。';
+                $res['msg'] = '確認コードの送信に成功しました。ショートメッセージを確認してください。';
                 return $response->getBody()->write(json_encode($res));
             }
 
@@ -473,7 +473,7 @@ class AuthController extends BaseController
             }
             if (!$ret) {
                 $res['ret'] = 0;
-                $res['msg'] = '系统无法接受您的验证结果，请刷新页面后重试。';
+                $res['msg'] = '異常な結果を受信しました。再度やり直してください。';
                 return $response->getBody()->write(json_encode($res));
             }
         }
@@ -524,7 +524,7 @@ class AuthController extends BaseController
         if (MalioConfig::get('enable_register_email_restrict') == true) {
             if (in_array($email_postfix, MalioConfig::get('register_email_white_list')) == false) {
                 $res['ret'] = 0;
-                $res['msg'] = '小老弟还会发送post请求啊';
+                $res['msg'] = 'このメールアドレスは使用できません';
                 return $response->getBody()->write(json_encode($res));
             }
         }

@@ -28,13 +28,13 @@ class PasswordController extends BaseController
         $user = User::where('email', $email)->first();
         if ($user == null) {
             $rs['ret'] = 0;
-            $rs['msg'] = '此邮箱不存在.';
+            $rs['msg'] = 'このメールアドレスは存在しません';
             return $response->getBody()->write(json_encode($rs));
         }
         $rs['ret'] = 1;
-        $rs['msg'] = '重置邮件已经发送,请检查邮箱.';
+        $rs['msg'] = 'メールを送信しましたので、ご確認ください。';
         if (Password::sendResetEmail($email)) {
-            $res['msg'] = '邮件发送失败，请联系网站管理员。';
+            $res['msg'] = 'メールの送信に失敗しました。管理者にご連絡ください。';
         }
 
         return $response->getBody()->write(json_encode($rs));
@@ -54,13 +54,13 @@ class PasswordController extends BaseController
 
         if ($password != $repasswd) {
             $res['ret'] = 0;
-            $res['msg'] = '两次输入不符合';
+            $res['msg'] = 'パスワードが一致しません';
             return $response->getBody()->write(json_encode($res));
         }
 
         if (strlen($password) < 8) {
             $res['ret'] = 0;
-            $res['msg'] = '密码太短啦';
+            $res['msg'] = 'パスワードが短すぎます';
             return $response->getBody()->write(json_encode($res));
         }
 
@@ -68,14 +68,14 @@ class PasswordController extends BaseController
         $token = PasswordReset::where('token', $tokenStr)->orderBy('id', 'desc')->first();
         if ($token == null || $token->expire_time < time()) {
             $rs['ret'] = 0;
-            $rs['msg'] = '链接已经失效,请重新获取';
+            $rs['msg'] = 'リンクの有効期限が切れています。再度やり直してください';
             return $response->getBody()->write(json_encode($rs));
         }
 
         $user = User::where('email', $token->email)->first();
         if ($user == null) {
             $rs['ret'] = 0;
-            $rs['msg'] = '链接已经失效,请重新获取';
+            $rs['msg'] = 'リンクの有効期限が切れています。再度やり直してください';
             return $response->getBody()->write(json_encode($rs));
         }
 
@@ -85,11 +85,11 @@ class PasswordController extends BaseController
         $user->ga_enable = 0;
         if (!$user->save()) {
             $rs['ret'] = 0;
-            $rs['msg'] = '重置失败,请重试';
+            $rs['msg'] = '再設定に失敗しました。再度やり直してください';
             return $response->getBody()->write(json_encode($rs));
         }
         $rs['ret'] = 1;
-        $rs['msg'] = '重置成功';
+        $rs['msg'] = '再設定が完了しました';
 
         $user->clean_link();
 

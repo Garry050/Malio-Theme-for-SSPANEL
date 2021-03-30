@@ -131,7 +131,7 @@ class UserController extends AdminController
         $user->ga_enable = 0;
         if ($user->save()) {
             $res['ret'] = 1;
-            $res['msg'] = '新用户注册成功 用户名: ' . $email . ' 随机初始密码: ' . $pass;
+            $res['msg'] = 'アカウントの作成に成功しました。　ユーザー名: ' . $email . ' 初期パスワード: ' . $pass;
             $res['email_error'] = 'success';
             $subject = Config::get('appName') . '-アカウント作成完了';
             $to = $user->email;
@@ -147,7 +147,7 @@ class UserController extends AdminController
             return $response->getBody()->write(json_encode($res));
         }
         $res['ret'] = 0;
-        $res['msg'] = '未知错误';
+        $res['msg'] = '不明なエラー';
         return $response->getBody()->write(json_encode($res));
     }
 
@@ -164,12 +164,12 @@ class UserController extends AdminController
         $user = User::where('email', '=', $email)->first();
         if ($user == null) {
             $result['ret'] = 0;
-            $result['msg'] = '未找到该用户';
+            $result['msg'] = '存在しないユーザーです';
             return $response->getBody()->write(json_encode($result));
         }
         if ($shop == null) {
             $result['ret'] = 0;
-            $result['msg'] = '请选择套餐';
+            $result['msg'] = 'プランを選択してください';
             return $response->getBody()->write(json_encode($result));
         }
         if ($disableothers == 1) {
@@ -195,7 +195,7 @@ class UserController extends AdminController
 
         $shop->buy($user);
         $result['ret'] = 1;
-        $result['msg'] = '套餐添加成功';
+        $result['msg'] = '購入に成功しました';
         return $response->getBody()->write(json_encode($result));
     }
 
@@ -358,11 +358,11 @@ class UserController extends AdminController
 
         if (!$user->save()) {
             $rs['ret'] = 0;
-            $rs['msg'] = '修改失败';
+            $rs['msg'] = '更新に失敗しました';
             return $response->getBody()->write(json_encode($rs));
         }
         $rs['ret'] = 1;
-        $rs['msg'] = '修改成功';
+        $rs['msg'] = '更新に成功しました';
         return $response->getBody()->write(json_encode($rs));
     }
 
@@ -375,11 +375,11 @@ class UserController extends AdminController
 
         if (!$user->kill_user()) {
             $rs['ret'] = 0;
-            $rs['msg'] = '删除失败';
+            $rs['msg'] = '削除に失敗しました';
             return $response->getBody()->write(json_encode($rs));
         }
         $rs['ret'] = 1;
-        $rs['msg'] = '删除成功';
+        $rs['msg'] = '削除が正常に完了しました';
         return $response->getBody()->write(json_encode($rs));
     }
 
@@ -393,7 +393,7 @@ class UserController extends AdminController
 
         if (!$admin->is_admin || !$user || !Auth::getUser()->isLogin) {
             $rs['ret'] = 0;
-            $rs['msg'] = '非法请求';
+            $rs['msg'] = '違法なリクエストです';
             return $response->getBody()->write(json_encode($rs));
         }
 
@@ -411,7 +411,7 @@ class UserController extends AdminController
             'old_local' => $request->getParam('local'),
         ], $expire_in);
         $rs['ret'] = 1;
-        $rs['msg'] = '切换成功';
+        $rs['msg'] = '切り替えに成功しました';
         return $response->getBody()->write(json_encode($rs));
     }
 
@@ -509,10 +509,10 @@ class UserController extends AdminController
         foreach ($users as $user) {
             $tempdata = array();
             //model里是casts所以没法直接 $tempdata=(array)$user
-            $tempdata['op'] = '<a class="btn btn-brand" href="/admin/user/' . $user->id . '/edit">编辑</a>
+            $tempdata['op'] = '<a class="btn btn-brand" href="/admin/user/' . $user->id . '/edit">編集</a>
                     <a class="btn btn-brand-accent" id="delete" href="javascript:void(0);" onClick="delete_modal_show(\'' . $user->id . '\')">删除</a>
-                    <a class="btn btn-brand" href="/admin/user/' . $user->id . '/bought">查套餐</a>
-                    <a class="btn btn-brand" id="changetouser" href="javascript:void(0);" onClick="changetouser_modal_show(\'' . $user->id . '\')">切换为该用户</a>';
+                    <a class="btn btn-brand" href="/admin/user/' . $user->id . '/bought">プランをご確認ください</a>
+                    <a class="btn btn-brand" id="changetouser" href="javascript:void(0);" onClick="changetouser_modal_show(\'' . $user->id . '\')">このユーザーに切り替える</a>';
             $tempdata['id'] = $user->id;
             $tempdata['user_name'] = $user->user_name;
             $tempdata['remark'] = $user->remark;
@@ -521,7 +521,7 @@ class UserController extends AdminController
             $tempdata['im_value'] = $user->im_value;
             switch ($user->im_type) {
                 case 1:
-                    $tempdata['im_type'] = '微信';
+                    $tempdata['im_type'] = 'WeChat';
                     break;
                 case 2:
                     $tempdata['im_type'] = 'QQ';

@@ -25,7 +25,7 @@
             </div>
 
             <div class="btn-auth auth-row">
-                <button id="reset" type="submit" class="btn btn-block btn-brand waves-attach waves-light">重置密码</button>
+                <button id="reset" type="submit" class="btn btn-block btn-brand waves-attach waves-light">パスワードのリセット</button>
             </div>
             <div class="auth-help auth-row">
                 <div class="auth-help-table auth-row auth-reset">
