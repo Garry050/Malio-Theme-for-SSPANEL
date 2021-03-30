@@ -374,7 +374,7 @@ class AuthController extends BaseController
             $pamas = array(
                 'access_key' => MalioConfig::get('globalsent_access_key'),
                 'mobile' => $full_phone,
-                'content' => '登録コードは '.$code ' です';
+                'content' => '登録コードは '.$code
             );
             
             $url = 'https://api.globalsent.com/send?'.http_build_query($pamas);
