@@ -2,13 +2,13 @@
   <div class="page-pw pure-u-1 pure-g flex align-center space-around wrap">
     <div class="title-back flex align-center">PASSWORD</div>
     <div class="pure-u-1 pure-u-sm-10-24 flex space-around wrap basis-max">
-      <h1>密码重置</h1>
+      <h1>パスワードリセット</h1>
       <div class="input-control flex wrap">
         <label for="Email" class="flex space-between align-center">
-          <span>邮箱</span>
+          <span>メールアドレス</span>
           <span>
             <router-link class="button-index" to="/auth/login">
-              <font-awesome-icon icon="share" />&nbsp;返回登录页
+              <font-awesome-icon icon="share" />&nbsp;トップに戻る
             </router-link>
           </span>
         </label>
@@ -21,7 +21,7 @@
         id="reset"
         type="submit"
         :disabled="isDisabled"
-      >重置密码</button>
+      >パスワードリセット</button>
     </div>
   </div>
 </template>
