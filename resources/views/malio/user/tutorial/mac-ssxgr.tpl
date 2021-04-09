@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 
 <head>
   {include file='user/head.tpl'}
 
-  <title>Mac 使用教程 &mdash; {$config["appName"]}</title>
+  <title>macOSでの使用方法 &mdash; {$config["appName"]}</title>
 
   <style>
     .btn-app {
@@ -99,7 +99,7 @@
             <div class="section-header-back">
               <a href="/user/tutorial" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Mac 使用教程</h1>
+            <h1>macOSでの使用方法</h1>
             {if $malio_config['display_more_app_button'] == true}
             <div class="section-header-breadcrumb">
               <div class="btn-group dropleft">
@@ -132,12 +132,13 @@
                         <div class="row">
                           <div class="left-text col-xs-12 col-md-6 col-lg-6">
                             <label class="step-no">1.</label>
-                            <p>下载 ShawdowsockX-NG-R8 客户端，安装后运行。</p>
-                            <a href="/client-download/ss-mac.zip" class="btn btn-icon icon-left btn-primary btn-app btn-lg btn-round" target="blank"><i class="fas fa-download"></i> 下载客户端</a>
+                            <p>まずは「ShawdowsockX-NG-R8」をダウンロードして、インストールし、右クリックで「開く」を選択後再度「開く」を選択してください。その後パスワードを入力してください。(インストール方法: ダウンロードフォルダ内の「ShadowsocksX-NG-R8」をドラッグ等でアプリケーションに移動)</p>
+                            <a href="https://github.com/paradiseduo/ShadowsocksX-NG-R8/releases/download/1.7.2/ShadowsocksX-NG-R.zip" class="btn btn-icon icon-left btn-primary btn-app btn-lg btn-round" target="blank"><i class="fas fa-download"></i> ダウンロード</a>
                           </div>
                           <div class="right-pic col-xs-12 col-md-6 col-lg-6">
                             <div class="tutorial-pic hide-on-mobie">
-                              <img style="border:1px solid #f0f0f0" src="/theme/malio/img/tutorial/blank-green.jpg">
+                              <img style="border:1px solid #f0f0f0" src="/theme/malio/img/tutorial/macos-ssr-1.png">
+                              <img style="border:1px solid #f0f0f0" src="/theme/malio/img/tutorial/macos-ssr-2.png">
                             </div>
                           </div>
                         </div>
@@ -147,12 +148,12 @@
                         <div class="row">
                           <div class="left-text col-xs-12 col-md-6 col-lg-6">
                             <label class="step-no">2.</label>
-                            <p>点击屏幕右上角小飞机图标，选择 “服务器” > “编辑订阅”，然后点击左下角 + 号，粘贴订阅地址，组名填写为 {$config['appName']}，最后点击OK。</p>
-                            <a href="##" class="btn btn-icon icon-left btn-primary btn-app btn-lg btn-round copy-text" data-clipboard-text="{$subInfo['ssr']}{if $malio_config['enable_sub_extend'] == true}&extend=1{/if}"><i class="malio-ssr"></i> 复制 SSR 订阅链接</a>
+                            <p>画面右上にある飛行機マークをクリックし、「Subscribers」にカーソルを合わせ、「Edit Subscribers Feed」をクリック後出てきたウィンドウ内の左下の[+]をクリックし、URLの項目にサブスクリプションリンクを入力して、「Group」に {$config['appName']} と入力して「OKボタン」を押してください。</p>
+                            <a href="##" class="btn btn-icon icon-left btn-primary btn-app btn-lg btn-round copy-text" data-clipboard-text="{$subInfo['ssr']}{if $malio_config['enable_sub_extend'] == true}&extend=1{/if}"><i class="malio-ssr"></i> サブスクリプションリンクをコピー</a>
                           </div>
                           <div class="right-pic col-xs-12 col-md-6 col-lg-6">
                             <div class="tutorial-pic">
-                              <img src="/theme/malio/img/tutorial/blank-green.jpg">
+                              <img src="/theme/malio/img/tutorial/macos-ssr-3.png">
                             </div>
                           </div>
                         </div>
@@ -162,11 +163,11 @@
                         <div class="row">
                           <div class="left-text col-xs-12 col-md-6 col-lg-6">
                             <label class="step-no">3.</label>
-                            <p>再次点击屏幕右上角小飞机图标，选择 “服务器” > “手动更新订阅”。</p>
+                            <p>再度右上の飛行機マークをクリックし、「Subscribers」→「Update Subscription Without Proxu」をクリックしてください</p>
                           </div>
                           <div class="right-pic col-xs-12 col-md-6 col-lg-6">
                             <div class="tutorial-pic">
-                              <img style="border:1px solid #f0f0f0" src="/theme/malio/img/tutorial/blank-green.jpg">
+                              <img style="border:1px solid #f0f0f0" src="/theme/malio/img/tutorial/macos-ssr-4.png">
                             </div>
                           </div>
                         </div>
@@ -176,11 +177,11 @@
                         <div class="row">
                           <div class="left-text col-xs-12 col-md-6 col-lg-6">
                             <label class="step-no">4.</label>
-                            <p>再次点击屏幕右上角小飞机图标，选择 “打开Shadowsocks” 即可使用。</p>
+                            <p>通知が表示され、飛行機マークから「残り使用量: XXGB」にカーソルを合わせるとサーバー一覧が出てくれば成功です。サーバーを選択後「ACL Mode」から「Proxy Back China」で中国のみプロキシさせるといった方法や「Global Mode」で全通信をプロキシさせる事ができるようになります</p>
                           </div>
                           <div class="right-pic col-xs-12 col-md-6 col-lg-6">
                             <div class="tutorial-pic">
-                              <img style="border:1px solid #f0f0f0" src="/theme/malio/img/tutorial/blank-green.jpg">
+                              <img style="border:1px solid #f0f0f0" src="/theme/malio/img/tutorial/macos-ssr-5.png">
                             </div>
                           </div>
                         </div>

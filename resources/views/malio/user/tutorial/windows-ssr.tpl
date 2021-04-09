@@ -4,7 +4,7 @@
 <head>
   {include file='user/head.tpl'}
 
-  <title>Windows 使用教程 &mdash; {$config["appName"]}</title>
+  <title>Windowsでの使用方法 &mdash; {$config["appName"]}</title>
 
   <style>
     .btn-app {
@@ -99,12 +99,12 @@
             <div class="section-header-back">
               <a href="/user/tutorial" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Windows 使用教程</h1>
+            <h1>Windowsでの使用方法</h1>
             {if $malio_config['display_more_app_button'] == true || $malio_config['enable_windows_gaming_tutorial'] == true}
             <div class="section-header-breadcrumb">
               {if $malio_config['enable_windows_gaming_tutorial'] == true}
               <div id="checkin-div" class="breadcrumb-item active">
-                <a href="/user/tutorial?os=windows&client=netch" class="btn btn-icon icon-left btn-primary {if $malio_config['display_more_app_button'] == true}mr-2{/if}"><i class="fas fa-gamepad"></i> 游戏加速教程</a>
+                <a href="/user/tutorial?os=windows&client=netch" class="btn btn-icon icon-left btn-primary {if $malio_config['display_more_app_button'] == true}mr-2{/if}"><i class="fas fa-gamepad"></i> ゲームで使用する場合の説明</a>
               </div>
               {/if}
               {if $malio_config['display_more_app_button'] == true}
@@ -139,12 +139,12 @@
                         <div class="row">
                           <div class="left-text col-xs-12 col-md-6 col-lg-6">
                             <label class="step-no">1.</label>
-                            <p>下载 SSR 客户端，解压后以管理员身份运行 ShadowsocksR-dotnet4.0.exe。若系统提示需要安装 .NET Framework，请<a href="https://www.microsoft.com/net/download/dotnet-framework-runtime" target="blank">点此</a>访问微软官网下载安装。</p>
-                            <a href="/client-download/ssr.7z" class="btn btn-icon icon-left btn-primary btn-app btn-lg btn-round" target="blank"><i class="fas fa-download"></i> 下载客户端</a>
+                            <p>まずはSSRクライアントをダウンロードし、展開後管理者として起動します。もし、NET Framrwork 4.0をインストールしていない場合は先に<a href="https://www.microsoft.com/net/download/dotnet-framework-runtime" target="blank">ここ</a>をクリックしてインストーラーをダウンロードし、.NET Framework 4.0をインストールしてからSSRクライアントを起動してください。起動後、写真の手順の通り通知アイコンの飛行機マークを右クリックし、「Server Subscribe」→「Subscribe settings...」をクリックしてください。</p>
+                            <a href="/client-download/ssr.7z" class="btn btn-icon icon-left btn-primary btn-app btn-lg btn-round" target="blank"><i class="fas fa-download"></i>ダウンロード</a>
                           </div>
                           <div class="right-pic col-xs-12 col-md-6 col-lg-6">
                             <div class="tutorial-pic hide-on-mobie">
-                              <img style="border:1px solid #f0f0f0" src="/theme/malio/img/tutorial/windows-ssr-1.jpg">
+                              <img style="border:1px solid #f0f0f0" src="/theme/malio/img/tutorial/windows-ssr-1.png">
                             </div>
                           </div>
                         </div>
@@ -154,13 +154,12 @@
                         <div class="row">
                           <div class="left-text col-xs-12 col-md-6 col-lg-6">
                             <label class="step-no">2.</label>
-                            <p>点击这个按钮 👇👇👇</p>
-                            <a href="##" class="btn btn-icon icon-left btn-primary btn-app btn-lg btn-round" onclick="importSublink('ssr')"><i class="malio-ssr"></i> 一键导入订阅链接到 SSR</a>
-                            <p class="text-muted" style="font-size: 13px">一键导入不成功？<a href="#manual-import" class="text-muted "><u>试试手动导入</u> →</a></p>
+                            <p>下記のボタンを押してリンクをコピーしたあと、写真の手順の通りに「Add」をクリック後URLに先ほどコピーしたURLを貼り付けて「OK」を押してください。</p>
+                            <a href="##" class="btn btn-icon icon-left btn-primary btn-app btn-lg btn-round copy-text" data-clipboard-text="{$subInfo['ssr']}{if $malio_config['enable_sub_extend'] == true}&extend=1{/if}"><i class="malio-ssr"></i>サブスクリプションリンクをコピー</a>
                           </div>
                           <div class="right-pic col-xs-12 col-md-6 col-lg-6">
                             <div class="tutorial-pic">
-                              <img src="/theme/malio/img/tutorial/windows-ssr-2.jpg">
+                              <img src="/theme/malio/img/tutorial/windows-ssr-2.png">
                             </div>
                           </div>
                         </div>
@@ -170,11 +169,12 @@
                         <div class="row">
                           <div class="left-text col-xs-12 col-md-6 col-lg-6">
                             <label class="step-no">3.</label>
-                            <p>再次右键点击小飞机，选择 “服务器订阅” > “更新SSR服务器订阅(不通过代理)”</p>
+                            <p>再度飛行機マークから「Server Subscribe」→「Update subscrive SSR node」をクリックするとサーバーリストが読み込まれた通知が出るのを確認してください。</p>
                           </div>
                           <div class="right-pic col-xs-12 col-md-6 col-lg-6">
                             <div class="tutorial-pic">
-                              <img style="border:1px solid #f0f0f0" src="/theme/malio/img/tutorial/windows-ssr-3.jpg">
+                              <img style="border:1px solid #f0f0f0" src="/theme/malio/img/tutorial/windows-ssr-3.png">
+                              <img style="border:1px solid #f0f0f0" src="/theme/malio/img/tutorial/windows-ssr-4.png">
                             </div>
                           </div>
                         </div>
@@ -184,11 +184,11 @@
                         <div class="row">
                           <div class="left-text col-xs-12 col-md-6 col-lg-6">
                             <label class="step-no">4.</label>
-                            <p>右键点击小飞机，选择 “服务器” > “{$config['appName']}”，可随意切换节点。选择节点后即可正常使用。</p>
+                            <p>飛行機マークから「Servers」→ 「{$config['appName']}」からサーバー一覧が出てくるので目的のサーバーを選択してください。また「Proxy rule」からLANと中国以外のIPをプロキシするなどの設定ができますので色々試してみてください。(無効にするにはModeからdisable system proxyかNo modify system proxyを選択してください。)</p>
                           </div>
                           <div class="right-pic col-xs-12 col-md-6 col-lg-6">
                             <div class="tutorial-pic">
-                              <img style="border:1px solid #f0f0f0" src="/theme/malio/img/tutorial/windows-ssr-4.jpg">
+                              <img style="border:1px solid #f0f0f0" src="/theme/malio/img/tutorial/windows-ssr-5.png">
                             </div>
                           </div>
                         </div>
@@ -204,9 +204,9 @@
                     <div class="faq">
                       <div class="row mt-2 mb-2">
                         <div class="col-sm-6 col-xs-12 col-md-6 col-lg-6" id="manual-import">
-                          <h6>SSR 无法一键导入，如何手动导入配置？</h6>
+                          <h6>FAQ TODO</h6>
                           <p class="mb-4 font-13">
-                            <a href="##" class="copy-text" data-clipboard-text="{$subInfo['ssr']}{if $malio_config['enable_sub_extend'] == true}&extend=1{/if}">点此复制 SSR 订阅链接</a>，在状态栏找到小飞机，右键点击，选中 “服务器订阅” > “SSR服务器订阅设置”，添加并粘贴订阅链接。
+                            <a href="##" class="copy-text" data-clipboard-text="{$subInfo['ssr']}{if $malio_config['enable_sub_extend'] == true}&extend=1{/if}">TODO
                           </p>
                         </div>
                       </div>

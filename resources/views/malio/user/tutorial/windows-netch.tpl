@@ -4,7 +4,7 @@
 <head>
   {include file='user/head.tpl'}
 
-  <title>Windows 游戏加速教程 &mdash; {$config["appName"]}</title>
+  <title>Windowsでゲームで使用する場合 &mdash; {$config["appName"]}</title>
 
   <style>
     .btn-app {
@@ -99,7 +99,7 @@
             <div class="section-header-back">
               <a href="/user/tutorial" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Windows 游戏加速教程</h1>
+            <h1>Windowsでゲームで使用する場合</h1>
             {if $malio_config['display_more_app_button'] == true}
             <div class="section-header-breadcrumb">
               <div class="btn-group dropleft">
@@ -123,8 +123,8 @@
                         <div class="row">
                           <div class="left-text col-xs-12 col-md-6 col-lg-6">
                             <label class="step-no">1.</label>
-                            <p>下载 Netch 客户端，解压后以管理员身份运行 Netch.exe。若系统提示需要安装 .NET Framework，请<a href="https://www.microsoft.com/net/download/dotnet-framework-runtime" target="blank">点此</a>访问微软官网下载安装。</p>
-                            <a href="/client-download/netch.7z" class="btn btn-icon icon-left btn-primary btn-app btn-lg btn-round" target="blank"><i class="fas fa-download"></i> 下载客户端</a>
+                            <p>下記からNetchをダウンロードし、管理者としてNetch.exeを起動させてください。もし、NET Framrwork 4.0をインストールしていない場合は先に<a href="https://www.microsoft.com/net/download/dotnet-framework-runtime" target="blank">ここ</a>をクリックしてインストーラーをダウンロードし、.NET Framework 4.0をインストールしてからSSRクライアントを起動してください。</p>
+                            <a href="/client-download/netch.7z" class="btn btn-icon icon-left btn-primary btn-app btn-lg btn-round" target="blank"><i class="fas fa-download"></i> ダウンロード</a>
                           </div>
                           <div class="right-pic col-xs-12 col-md-6 col-lg-6">
                             <div class="tutorial-pic hide-on-mobie">
@@ -138,11 +138,11 @@
                         <div class="row">
                           <div class="left-text col-xs-12 col-md-6 col-lg-6">
                             <label class="step-no">2.</label>
-                            <p>打开程序后，选中 “订阅” > “管理订阅链接”</p>
+                            <p>起動後、「サブスクリプション」→「サブスクリプションリンクを管理」をクリックしてください</p>
                           </div>
                           <div class="right-pic col-xs-12 col-md-6 col-lg-6">
                             <div class="tutorial-pic">
-                              <img src="/theme/malio/img/tutorial/windows-netch-2.jpg">
+                              <img src="/theme/malio/img/tutorial/windows-netch-2.png">
                             </div>
                           </div>
                         </div>
@@ -152,20 +152,20 @@
                         <div class="row">
                           <div class="left-text col-xs-12 col-md-6 col-lg-6">
                             <label class="step-no">2.</label>
-                            <p>粘贴订阅链接到左下角的链接，备注填写为，点击添加，然后点击保存</p>
+                            <p>下記からサブスクリプションリンクをコピーして「リンク」の項目に貼り付けてください。備考には「Gaming-SSR」または自分の好きな名前をつけて「新規」ボタンをクリックしてください。</p>
                             {if (in_array("ssr",$malio_config['support_sub_type']))}
-                            <a href="##" class="btn btn-icon icon-left btn-primary btn-app copy-text btn-lg btn-round" data-clipboard-text="{$subInfo['ssr']}{if $malio_config['enable_sub_extend'] == true}&extend=1{/if}"><i class="malio-ssr"></i> 复制 SSR 订阅链接</a>
+                            <a href="##" class="btn btn-icon icon-left btn-primary btn-app copy-text btn-lg btn-round" data-clipboard-text="{$subInfo['ssr']}{if $malio_config['enable_sub_extend'] == true}&extend=1{/if}"><i class="malio-ssr"></i> SSRのサブスクリプションリンクをコピー</a>
                             {/if}
                             {if (in_array("v2ray",$malio_config['support_sub_type']))}
-                            <a href="##" class="btn btn-icon icon-left btn-primary btn-app copy-text btn-lg btn-round" data-clipboard-text="{$subInfo['v2ray']}{if $malio_config['enable_sub_extend'] == true}&extend=1{/if}"><i class="malio-v2ray"></i> 复制 V2Ray 订阅链接</a>
+                            <a href="##" class="btn btn-icon icon-left btn-primary btn-app copy-text btn-lg btn-round" data-clipboard-text="{$subInfo['v2ray']}{if $malio_config['enable_sub_extend'] == true}&extend=1{/if}"><i class="malio-v2ray"></i> V2Rayのサブスクリプションリンクをコピー</a>
                             {/if}
                             {if (in_array("ss",$malio_config['support_sub_type']))}
-                            <a href="##" class="btn btn-icon icon-left btn-primary btn-app copy-text btn-lg btn-round" data-clipboard-text="{$subInfo['ss']}{if $malio_config['enable_sub_extend'] == true}&extend=1{/if}"><i class="malio-ssr"></i> 复制 SS 订阅链接</a>
+                            <a href="##" class="btn btn-icon icon-left btn-primary btn-app copy-text btn-lg btn-round" data-clipboard-text="{$subInfo['ss']}{if $malio_config['enable_sub_extend'] == true}&extend=1{/if}"><i class="malio-ssr"></i> SSのサブスクリプションリンクをコピー</a>
                             {/if}
                           </div>
                           <div class="right-pic col-xs-12 col-md-6 col-lg-6">
                             <div class="tutorial-pic">
-                              <img src="/theme/malio/img/tutorial/windows-netch-3.jpg">
+                              <img src="/theme/malio/img/tutorial/windows-netch-3.png">
                             </div>
                           </div>
                         </div>
@@ -175,11 +175,11 @@
                         <div class="row">
                           <div class="left-text col-xs-12 col-md-6 col-lg-6">
                             <label class="step-no">3.</label>
-                            <p>如果需要加速的游戏不在列表里面，那么就选中 “模式” > “创建进程模式”</p>
+                            <p>その後再度「サブスクリプション」から「サブスクリプションからサーバー設定を更新」をしてサーバー欄にGaming-SSRのサーバー一覧が出てくるのを確認してください。</p>
                           </div>
                           <div class="right-pic col-xs-12 col-md-6 col-lg-6">
                             <div class="tutorial-pic">
-                              <img style="border:1px solid #f0f0f0" src="/theme/malio/img/tutorial/windows-netch-4.jpg">
+                              <img style="border:1px solid #f0f0f0" src="/theme/malio/img/tutorial/windows-netch-4.png">
                             </div>
                           </div>
                         </div>
@@ -189,11 +189,11 @@
                         <div class="row">
                           <div class="left-text col-xs-12 col-md-6 col-lg-6">
                             <label class="step-no">4.</label>
-                            <p>点击 “扫描” 选取你游戏安装目录后选择确定即可添加，点击保存即可选择应用此模式</p>
+                            <p>モード一覧に希望するゲーム名等がない場合は、「モード」→「新規プロファイル」からモードを自分で作成することができます。Selectまたはスキャンから対象のゲーム等のフォルダーを選択することで自動的に項目が追加されます。追加されたのを確認したら備考から名前を入力して「保存」で保存できます。</p>
                           </div>
                           <div class="right-pic col-xs-12 col-md-6 col-lg-6">
                             <div class="tutorial-pic">
-                              <img style="border:1px solid #f0f0f0" src="/theme/malio/img/tutorial/windows-netch-6.jpg">
+                              <img style="border:1px solid #f0f0f0" src="/theme/malio/img/tutorial/windows-netch-5.png">
                             </div>
                           </div>
                         </div>
@@ -203,11 +203,11 @@
                         <div class="row">
                           <div class="left-text col-xs-12 col-md-6 col-lg-6">
                             <label class="step-no">5.</label>
-                            <p>最后选择模式，点击启动即可使用。</p>
+                            <p>これで準備は完了しました。サーバーとモードを選んで「起動」を押すことでゲームをプロキシ経由で遊ぶようにできます。(起動する前にゲームが動作している場合は最初にゲームを終了させてから起動してください。)</p>
                           </div>
                           <div class="right-pic col-xs-12 col-md-6 col-lg-6">
                             <div class="tutorial-pic">
-                              <img style="border:1px solid #f0f0f0" src="/theme/malio/img/tutorial/windows-netch-7.jpg">
+                              <img style="border:1px solid #f0f0f0" src="/theme/malio/img/tutorial/windows-netch-6.png">
                             </div>
                           </div>
                         </div>
