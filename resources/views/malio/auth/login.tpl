@@ -327,11 +327,11 @@
             {if $recaptcha_sitekey != null}
             grecaptcha.reset();
             {/if}
-            var errorMsg = '密码或邮箱不正确';
+            var errorMsg = 'パスワードまたはメールアドレスが間違っています';
             if (twoFA == true) {
-              errorMsg = '两步验证码错误'
+              errorMsg = '二段階認証コードが間違っています'
             }
-            swal('出错了', errorMsg, 'error');
+            swal('エラー', errorMsg, 'error');
           }
         }
       });
