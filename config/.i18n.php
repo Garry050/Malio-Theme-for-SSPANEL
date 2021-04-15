@@ -218,7 +218,11 @@ $I18N['plans-info'] = array(   // 会员计划的信息， 可以复制array增�
             'features' => [
                 array(
                     'support' => true,
-                    'name' => '10GBまで使用可能'
+                    'name' => '100GBまで使用可能'
+                ),
+                array(
+                    'support' => true,
+                    'name' => '速度制限 30Mbps'
                 ),
                 array(
                     'support' => true,
@@ -246,7 +250,11 @@ $I18N['plans-info'] = array(   // 会员计划的信息， 可以复制array增�
             'features' => [
                 array(
                     'support' => true,
-                    'name' => '50GBまで使用可能'
+                    'name' => '200GBまで使用可能'
+                ),
+                array(
+                    'support' => true,
+                    'name' => '速度制限 50Mbps'
                 ),
                 array(
                     'support' => true,
@@ -262,7 +270,7 @@ $I18N['plans-info'] = array(   // 会员计划的信息， 可以复制array增�
                 ),
                 array(
                     'support' => false,
-                    'name' => '中国本土のサーバー'
+                    'name' => '専用回線のサーバー'
                 ),
             ]
         ),
@@ -274,7 +282,11 @@ $I18N['plans-info'] = array(   // 会员计划的信息， 可以复制array增�
             'features' => [
                                 array(
                     'support' => true,
-                    'name' => '100GBまで使用可能'
+                    'name' => '500GBまで使用可能'
+                ),
+                array(
+                    'support' => true,
+                    'name' => '速度制限 100Mbps'
                 ),
                 array(
                     'support' => true,
@@ -290,7 +302,7 @@ $I18N['plans-info'] = array(   // 会员计划的信息， 可以复制array增�
                 ),
                 array(
                     'support' => true,
-                    'name' => '中国本土のサーバー'
+                    'name' => '専用回線のサーバー'
                 ),
             ]
         ),
