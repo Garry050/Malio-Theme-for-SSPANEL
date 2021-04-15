@@ -393,7 +393,7 @@
                     </div>
                     <div class="invoice-detail-item">
                       <div class="invoice-detail-name">{$i18n->get('pay-with-balance')}</div>
-                      <div id="account-money" class="invoice-detail-value">¥ -{$user->money}</div>
+                      <div id="account-money" class="invoice-detail-value"> -{$user->money}円</div>
                     </div>
                     <hr class="mt-2 mb-2">
                     <div class="invoice-detail-item">
@@ -445,7 +445,7 @@
                   </div>
                   <div class="pricing-padding">
                     <div class="pricing-price">
-                      <div>¥{$shop->price}</div>
+                      <div>{$shop->price}円</div>
                       <div>{$shop->expire()} {$i18n->get('days')}</div>
                     </div>
                     <div class="pricing-details">
