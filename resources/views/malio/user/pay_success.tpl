@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 
 <head>
   {include file='user/head.tpl'}
 
-  <title>支付结果 &mdash; {$config["appName"]}</title>
+  <title>支払い結果 &mdash; {$config["appName"]}</title>
 
 </head>
 
@@ -41,20 +41,20 @@
                     <div class="empty-state" data-height="600" style="height: 600px;">
                       <img class="img-fluid" src="/theme/malio/img/card_payment_online_1.svg" alt="image">
                       {if $success == 1}
-                      <h2 class="mt-4">支付结果已确认</h2>
+                      <h2 class="mt-4">支払いを確認しました</h2>
                       <p class="lead">
-                        您充值的 {$money} 元已到账，可以随意关闭此页面
+                        あなたがお支払いした {$money} 円の支払いを確認しました。このページを閉じてください。
                       </p>
                       {else}
-                      <h2 class="mt-4">支付结果确认中，请稍等</h2>
+                      <h2 class="mt-4">お支払状況を確認しています。少々お待ち下さい。</h2>
                       <p class="lead">
-                        您也可以选择关闭此页面，充值的金额将自动到账
+                        支払いは現在確認中ですがこのページを閉じても問題はありません。
                       </p>
                       <script>
                         setTimeout('window.location.reload()', 5000);
                       </script>
                       {/if}
-                      <a href="/user/code" class="mt-4 bb">前往我的钱包 👉</a>
+                      <a href="/user/code" class="mt-4 bb">アカウント情報に戻る 👉</a>
                     </div>
                   </div>
                 </div>

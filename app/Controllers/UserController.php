@@ -1222,7 +1222,7 @@ class UserController extends BaseController
         $shop->buy($user);
 
         $res['ret'] = 1;
-        $res['msg'] = '购买成功';
+        $res['msg'] = '購入に成功しました';
 
         return $response->getBody()->write(json_encode($res));
     }

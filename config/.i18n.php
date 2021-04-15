@@ -2355,7 +2355,7 @@ $I18N['please-enter-the-amount-of-chances-feedback'] = array(
 );
 $I18N['successful-purchase'] = array(
     'en' => 'Successful purchase',
-    'zh-cn' => '購入しました'
+    'zh-cn' => '購入が完了しました'
 ##  'zh-cn' => '购买成功'
 );
 $I18N['go-to-wallet'] = array(
